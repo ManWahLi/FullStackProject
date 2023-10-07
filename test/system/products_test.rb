@@ -14,10 +14,13 @@ class ProductsTest < ApplicationSystemTestCase
     visit products_url
     click_on "New product"
 
+    fill_in "Brand", with: @product.brand_id
+    fill_in "Category", with: @product.category_id
     fill_in "Description", with: @product.description
     fill_in "Image link", with: @product.image_link
     fill_in "Price", with: @product.price
     fill_in "Product name", with: @product.product_name
+    fill_in "Product type", with: @product.product_type_id
     fill_in "Rating", with: @product.rating
     click_on "Create Product"
 
@@ -29,10 +32,13 @@ class ProductsTest < ApplicationSystemTestCase
     visit product_url(@product)
     click_on "Edit this product", match: :first
 
+    fill_in "Brand", with: @product.brand_id
+    fill_in "Category", with: @product.category_id
     fill_in "Description", with: @product.description
     fill_in "Image link", with: @product.image_link
     fill_in "Price", with: @product.price
     fill_in "Product name", with: @product.product_name
+    fill_in "Product type", with: @product.product_type_id
     fill_in "Rating", with: @product.rating
     click_on "Update Product"
 

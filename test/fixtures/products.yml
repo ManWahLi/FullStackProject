@@ -6,6 +6,9 @@ one:
   price: 9.99
   image_link: MyText
   rating: 9.99
+  category: one
+  brand: one
+  product_type: one
 
 two:
   product_name: MyString
@@ -13,3 +16,6 @@ two:
   price: 9.99
   image_link: MyText
   rating: 9.99
+  category: two
+  brand: two
+  product_type: two
