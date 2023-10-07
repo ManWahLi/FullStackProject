@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   resources :colors
   resources :products
   resources :brands
