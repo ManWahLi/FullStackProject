@@ -1,5 +1,5 @@
 class ProductType < ApplicationRecord
   has_many :products
 
-  validates :name, presence: true, uniqueness: true
+  validates :product_type_name, presence: true, uniqueness: true
 end
