@@ -1,4 +1,5 @@
 require "csv"
+require "faker"
 
 # Delete all data
 ProductTag.delete_all
@@ -11,7 +12,7 @@ Color.delete_all
 Tag.delete_all
 
 # Reseed id of each table
-ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name IN ('tags', 'brands');")
+ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name IN ('tags', 'brands', 'colors');")
 
 # open csv files for Tag
 filename = Rails.root.join("db/tags_list.csv")
@@ -36,3 +37,11 @@ brands.each do |b|
 end
 
 puts "Created #{Brand.count} brands."
+
+
+# Import faker data for Color
+20.times do
+  Color.create(color_name: Faker::Color.unique.color_name.capitalize)
+end
+
+puts "Created #{Color.count} colors."
