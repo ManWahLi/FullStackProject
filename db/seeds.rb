@@ -39,15 +39,14 @@ response = Net::HTTP.get(uri)
 products = JSON.parse(response)
 
 products.each do |p|
-  next unless %w[brand product_type category name price description tag_list image_link
-                 rating].all? do |key|
+  next unless %w[brand product_type category name tag_list image_link rating].all? do |key|
                 p[key].present?
               end
 
-  brand = Brand.find_or_create_by(brand_name: p["brand"])
-  category = Category.find_or_create_by(category_name: p["category"])
-  product_type = ProductType.find_or_create_by(product_type_name: p["product_type"])
-  product = brand.products.create(
+  brand = Brand.find_or_create_by(brand_name: p["brand"].split.map(&:capitalize).join(" "))
+  category = Category.find_or_create_by(category_name: p["category"].capitalize)
+  product_type = ProductType.find_or_create_by(product_type_name: p["product_type"].capitalize)
+  product = brand.products.find_or_create_by(
     product_name: p["name"],
     price:        Faker::Commerce.price,
     description:  Faker::Lorem.sentence,

@@ -15,9 +15,9 @@
   </p>
 
   <p>
-    <strong>Image link:</strong>
-    <%= product.image_link %>
+    <strong>Image:</strong>
   </p>
+  <%= link_to(image_tag(product.image_link, alt: product.product_name), product) %>
 
   <p>
     <strong>Rating:</strong>
