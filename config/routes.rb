@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :product_tags
-  resources :product_colors
+  resources :abouts
+  # resources :product_tags
+  # resources :product_colors
   resources :tags
   resources :colors
   resources :products

@@ -10,6 +10,6 @@ class Product < ApplicationRecord
 
   validates :product_name, :description, :price, presence: true
   validates :product_name, uniqueness: true
-  validates :price, numericality: { presence: true, format: { with: /\A\d+(\.\d{2})?\z/ } }
-  validates :rating, numericality: { allow_nil: true, format: { with: /\A\d+(\.\d{2})?\z/ } }
+  validates :price, numericality: { format: { with: /\A\d+(\.\d{2})?\z/ } }
+  validates :rating, numericality: { format: { with: /\A\d+(\.\d{2})?\z/ } }
 end
