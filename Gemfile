@@ -1,9 +1,16 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+ruby "3.1.2"
+
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 
-ruby "3.1.2"
+gem 'bootstrap', '~> 5.0'
+gem 'cssbundling-rails'
+gem 'sassc', '~> 2.0'
+
+# Kaminari pagination [https://github.com/kaminari/kaminari]
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
