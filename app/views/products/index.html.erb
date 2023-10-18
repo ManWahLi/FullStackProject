@@ -1,27 +1,32 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>All Products</h1>
-
-<div id="products">
+<div class="m-3" id="products">
+  <h1>All Products</h1>
   <table class="table">
-    <tr>
-      <th>Rating</th>
-      <th>Image</th>
-      <th>Product Name</th>
-    </tr>
-    <% @products.each do |product| %>
+    <thead>
       <tr>
-        <td>
-          <%= product.rating %>
-        </td>
-        <td>
-          <%= link_to(image_tag(product.image_link, alt: product.product_name, width: "60"), product) %>
-        </td>
-        <td>
-          <%= link_to product.product_name, product %>
-        </td>
+        <th style="width: 10%">Rating</th>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Price CA$</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td>
+            <%= product.rating %>
+          </td>
+          <td>
+            <%= link_to(image_tag(product.image_link, alt: product.product_name, width: "60"), product) %>
+          </td>
+          <td>
+            <%= link_to product.product_name, product %>
+          </td>
+          <td>
+            <%= product.price %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
 
