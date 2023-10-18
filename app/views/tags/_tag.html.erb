@@ -1,7 +1,40 @@
-<div id="<%= dom_id tag %>">
-  <p>
-    <strong>Tag name:</strong>
-    <%= tag.tag_name %>
-  </p>
+<div class="m-3" id="<%= dom_id tag %>">
+  <h1>
+    <strong>
+      <%= tag.tag_name %>
+    </strong>
+  </h1>
 
+  <h3>Products by Tag (Order by Rating)</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 10%">Rating</th>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Price CA$</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tag.products.order("rating DESC").each do |product| %>
+        <tr>
+          <td>
+            <%= product.rating %>
+          </td>
+          <td>
+            <%= link_to(image_tag(product.image_link, alt: product.product_name, width: "60"), product) %>
+          </td>
+          <td>
+            <%= link_to product.product_name, product %>
+          </td>
+          <td>
+            <%= product.price %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+
+

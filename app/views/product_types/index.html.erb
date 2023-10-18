@@ -1,14 +1,30 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Product types</h1>
-
-<div id="product_types">
-  <% @product_types.each do |product_type| %>
-    <%= render product_type %>
-    <p>
-      <%= link_to "Show this product type", product_type %>
-    </p>
-  <% end %>
+<div class="m-3" id="product_type">
+  <h1>Product Types</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 30%">Product Type Name</th>
+        <th>Products in Product Type</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product_types.each do |product_type| %>
+        <tr>
+          <td>
+            <%= product_type.product_type_name %>
+          </td>
+          <td>
+            <%= product_type.products.count %>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-primary"><%= link_to "Show this product type", product_type %></button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "New product type", new_product_type_path %>
+

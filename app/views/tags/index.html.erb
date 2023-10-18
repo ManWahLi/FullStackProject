@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Tags</h1>
-
-<div id="tags">
-  <% @tags.each do |tag| %>
-    <%= render tag %>
-    <p>
-      <%= link_to "Show this tag", tag %>
-    </p>
-  <% end %>
+<div class="m-3" id="tag">
+  <h1>Tag</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 30%">Tag Name</th>
+        <th>Products in Tag</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td>
+            <%= tag.tag_name %>
+          </td>
+          <td>
+            <%= tag.products.count %>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-primary"><%= link_to "Show this tag", tag %></button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "New tag", new_tag_path %>
+
+
