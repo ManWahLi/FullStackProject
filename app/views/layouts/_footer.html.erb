@@ -1,3 +1,32 @@
 <footer>
-  <p>&copy;CopyWrong <%= Time.now.year%></p>
+  <ul class="nav justify-content-center pb-3 mb-3">
+    <li class="nav-item">
+      <%= link_to 'Home', root_path, class: 'nav-link link-secondary fs-5 mr-1' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Brand', brands_path, class: 'nav-link link-secondary fs-5 mr-1' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Category', categories_path, class: 'nav-link link-secondary fs-5 mr-1' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Product Type', product_types_path, class: 'nav-link link-secondary fs-5 mr-1' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Product', products_path, class: 'nav-link link-secondary fs-5 mr-1' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Color', colors_path, class: 'nav-link link-secondary fs-5 mr-1' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Tag', tags_path, class: 'nav-link link-secondary fs-5 mr-1' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'About', abouts_path, class: 'nav-link link-secondary fs-5 mr-1' %>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link link-secondary fs-5 mr-1">Contact Us</a>
+    </li>
+  </ul>
+  <p class="text-center text-muted">RRC Cosme &copy; CopyWrong <%= Time.now.year%></p>
 </footer>
