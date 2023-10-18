@@ -1,14 +1,29 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Colors</h1>
-
-<div id="colors">
-  <% @colors.each do |color| %>
-    <%= render color %>
-    <p>
-      <%= link_to "Show this color", color %>
-    </p>
-  <% end %>
+<div class="m-3" id="colors">
+  <h1>Colors</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 30%">Color Name</th>
+        <th>Products in Color</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @colors.each do |color| %>
+        <tr>
+          <td>
+            <%= color.color_name %>
+          </td>
+          <td>
+            <%= color.products.count %>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-primary"><%= link_to "Show this color", color %></button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "New color", new_color_path %>
