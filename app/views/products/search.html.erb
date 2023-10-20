@@ -1,0 +1,17 @@
+<p class="mb-5">
+  <%= @products.count %> products found
+  <% if params[:dropdown][:selected_category].present? %>
+    in <%= Category.find(params[:dropdown][:selected_category]).category_name %> category
+  <% else %>
+    in all categories
+  <% end %>
+  <% if params[:keywords] .present? %>
+    when search for: <%= params[:keywords] %>
+  <% end %>
+</p>
+<table class="table table-hover">
+  <%= render partial: 'layouts/components/theadproduct' %>
+  <tbody>
+    <%= render partial: 'layouts/components/tbodyproduct', collection: @products.order("rating DESC, product_name"), as: :product %>
+  </tbody>
+</table>

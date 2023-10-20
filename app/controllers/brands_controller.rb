@@ -1,18 +1,13 @@
 class BrandsController < ApplicationController
-  before_action :set_brand, only: %i[ show edit update destroy ]
+  before_action :set_brand, only: %i[show edit update destroy]
 
   # GET /brands or /brands.json
-  def index
-    @brands = Brand.all
-  end
-
   def index
     @brands = Brand.order("brand_name ASC").page(params[:page]).per(10)
   end
 
   # GET /brands/1 or /brands/1.json
-  def show
-  end
+  def show; end
 
   # GET /brands/new
   def new
@@ -20,8 +15,7 @@ class BrandsController < ApplicationController
   end
 
   # GET /brands/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /brands or /brands.json
   def create
@@ -62,13 +56,14 @@ class BrandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_brand
-      @brand = Brand.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def brand_params
-      params.require(:brand).permit(:brand_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_brand
+    @brand = Brand.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def brand_params
+    params.require(:brand).permit(:brand_name)
+  end
 end

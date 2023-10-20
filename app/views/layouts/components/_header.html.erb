@@ -39,6 +39,12 @@
 
     <%= link_to 'RRC Cosme', root_path, class: 'nav-link mb-0 font-weight-bold display-4 mr-3', style: 'font-family: arail, sans-serif;' %>
 
+    <%= form_with(url:search_products_path, method: :get, local: true) do %>
+      <%= text_field_tag(:keywords, nil, class: "input", placeholder: 'Search for Products') %>
+      <%= collection_select(:dropdown, :selected_category, Category.order(:category_name), :id, :category_name, {include_blank: "All categories"}, class: "select has-background-link-light") %>
+      <%= submit_tag("Search!", class: "button is-primary") %>
+    <% end %>
+
     <form class="form-inline my-2 my-lg-0">
       <!-- Category Dropdown List for Search -->
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

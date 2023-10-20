@@ -3,10 +3,6 @@ class ColorsController < ApplicationController
 
   # GET /colors or /colors.json
   def index
-    @colors = Color.all
-  end
-
-  def index
     @colors = Color.order("color_name ASC").page(params[:page]).per(10)
   end
 

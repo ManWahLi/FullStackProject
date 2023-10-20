@@ -3,13 +3,8 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
-  end
-
-  def index
     @products = Product.order("rating DESC, product_name").page(params[:page]).per(10)
   end
-
 
   # GET /products/1 or /products/1.json
   def show
@@ -64,6 +59,15 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    wildcard_search = "%#{params[:keywords]}%"
+    category_id = params[:dropdown][:selected_category]
+
+    @products = Product.where("product_name LIKE ?", wildcard_search)
+
+    @products = @products.where("category_id = ?", category_id) if category_id.present?
   end
 
   private

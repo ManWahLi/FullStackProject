@@ -3,10 +3,6 @@ class ProductTypesController < ApplicationController
 
   # GET /product_types or /product_types.json
   def index
-    @product_types = ProductType.all
-  end
-
-  def index
     @product_types = ProductType.order("product_type_name ASC").page(params[:page]).per(10)
   end
 
