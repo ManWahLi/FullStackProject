@@ -6,7 +6,9 @@
     <% @products.each do |product| %>
       <div class="col">
         <div class="card" style="width: 20rem; height: 40rem;">
-          <img src="<%= product.image_link %>" class="card-img-top" alt="card">
+          <%= link_to product do %>
+            <img src="<%= product.image_link %>" class="card-img-top" alt="card">
+          <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= product.product_name %></h5>
               <%= render partial: 'layouts/components/ratingstar', locals: { product: product } %>

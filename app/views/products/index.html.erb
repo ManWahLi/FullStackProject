@@ -1,7 +1,7 @@
 <div class="container mt-3" id="products">
   <h1>Products</h1>
   <div class="d-flex justify-content-end">
-    <%= paginate @products, class: "justify-content-end" %>
+    <%= paginate @products %>
   </div>
   <table class="table table-hover">
     <%= render partial: 'layouts/components/theadproduct' %>
