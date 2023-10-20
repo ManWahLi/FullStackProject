@@ -2,9 +2,9 @@
 
 <%= render @brand %>
 
-<div class='m-3'>
-  <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
-  <%= link_to "Back to brands", brands_path %>
+<div class="container mt-3">
+  <%= link_to "Edit this brand", edit_brand_path(@brand), class: "btn btn-outline-primary" %>
+  <%= link_to "Back to brands", brands_path, class: "btn btn-outline-primary" %>
 
-  <%= button_to "Destroy this brand", @brand, method: :delete %>
+  <%= button_to "Destroy this brand", @brand, method: :delete, class: "btn btn-outline-danger mt-3" %>
 </div>

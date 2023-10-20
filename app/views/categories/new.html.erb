@@ -1,9 +1,8 @@
-<h1>New category</h1>
+<div class="container mt-3">
 
-<%= render "form", category: @category %>
+  <h1>New category</h1>
 
-<br>
+  <%= render "form", category: @category %>
 
-<div>
-  <%= link_to "Back to categories", categories_path %>
+  <%= link_to "Back to categories", categories_path, class: "btn btn-outline-primary" %>
 </div>

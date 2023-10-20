@@ -1,228 +1,230 @@
-<h1>Describe Datasets</h1>
-<!--Data sources-->
-<hr>
-<h6>
-  We have selected “Makeup by Brand and Type” as our topic.<br>
-  We are planning to use the following data sources:
-</h6>
-<ol>
-  <li>
-    API
-    <table class="table table-hover table-bordered table-sm">
-      <tbody>
-        <tr>
-          <td>Website:</td>
-          <td><a href="http://makeup-api.herokuapp.com/">http://makeup-api.herokuapp.com/</a></td>
-        </tr>
-        <tr>
-          <td>API Endpoint:</td>
-          <td><a href="http://makeup-api.herokuapp.com/api/v1/products.json">http://makeup-api.herokuapp.com/api/v1/products.json</a></td>
-        </tr>
-        <tr>
-          <td>Response Format:</td>
-          <td>JSON</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>CSV</li>
-  <li>Faker</li>
-</ol>
+<div class="container mt-3">
+  <h1>Describe Datasets</h1>
+  <!--Data sources-->
+  <hr>
+  <h6>
+    We have selected “Makeup by Brand and Type” as our topic.<br>
+    We are planning to use the following data sources:
+  </h6>
+  <ol>
+    <li>
+      API
+      <table class="table table-hover table-bordered table-sm">
+        <tbody>
+          <tr>
+            <td>Website:</td>
+            <td><a href="http://makeup-api.herokuapp.com/">http://makeup-api.herokuapp.com/</a></td>
+          </tr>
+          <tr>
+            <td>API Endpoint:</td>
+            <td><a href="http://makeup-api.herokuapp.com/api/v1/products.json">http://makeup-api.herokuapp.com/api/v1/products.json</a></td>
+          </tr>
+          <tr>
+            <td>Response Format:</td>
+            <td>JSON</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>CSV</li>
+    <li>Faker</li>
+  </ol>
 
-<!--Data Models-->
-<hr>
-<h6>Our database is designed as follows:</h6>
-<ol>
-  <li>Products table
-    <table class="table table-hover table-bordered table-sm">
-      <thead>
-        <tr>
-          <th width="35%">Column</th>
-          <th>Data Type</th>
-          <th>Data Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>product_id</td>
-          <td>int</td>
-          <td>primary key</td>
-        </tr>
-        <tr>
-          <td>product_name</td>
-          <td>varchar</td>
-          <td>API</td>
-        </tr>
-        <tr>
-          <td>description</td>
-          <td>text</td>
-          <td>Faker</td>
-        </tr>
-        <tr>
-          <td>price</td>
-          <td>decimal</td>
-          <td>Faker</td>
-        </tr>
-        <tr>
-          <td>image_link</td>
-          <td>text</td>
-          <td>API</td>
-        </tr>
-        <tr>
-          <td>rating</td>
-          <td>decimal</td>
-          <td>API</td>
-        </tr>
-        <tr>
-          <td>category_id</td>
-          <td>int</td>
-          <td>foreign key</td>
-        </tr>
-        <tr>
-          <td>brand_id</td>
-          <td>int</td>
-          <td>foreign key</td>
-        </tr>
-        <tr>
-          <td>product_type_id</td>
-          <td>int</td>
-          <td>foreign key</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>Categories table
-    <table class="table table-hover table-bordered table-sm">
-      <thead>
-        <tr>
-          <th width="35%">Column</th>
-          <th>Data Type</th>
-          <th>Data Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>category_id</td>
-          <td>int</td>
-          <td>primary key</td>
-        </tr>
-        <tr>
-          <td>category_name</td>
-          <td>varchar</td>
-          <td>API</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>Brands table
-    <table class="table table-hover table-bordered table-sm">
-      <thead>
-        <tr>
-          <th width="35%">Column</th>
-          <th>Data Type</th>
-          <th>Data Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>brand_id</td>
-          <td>int</td>
-          <td>primary key</td>
-        </tr>
-        <tr>
-          <td>brand_name</td>
-          <td>varchar</td>
-          <td>API</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>Product_Types table
-    <table class="table table-hover table-bordered table-sm">
-      <thead>
-        <tr>
-          <th width="35%">Column</th>
-          <th>Data Type</th>
-          <th>Data Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>product_type_id</td>
-          <td>int</td>
-          <td>primary key</td>
-        </tr>
-        <tr>
-          <td>prodcut_type_name</td>
-          <td>varchar</td>
-          <td>API</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>Colors table
-    <table class="table table-hover table-bordered table-sm">
-      <thead>
-        <tr>
-          <th width="35%">Column</th>
-          <th>Data Type</th>
-          <th>Data Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>color_id</td>
-          <td>int</td>
-          <td>primary key</td>
-        </tr>
-        <tr>
-          <td>color_name</td>
-          <td>varchar</td>
-          <td>CSV</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>Tags table
-    <table class="table table-hover table-bordered table-sm">
-      <thead>
-        <tr>
-          <th width="35%">Column</th>
-          <th>Data Type</th>
-          <th>Data Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>tag_id</td>
-          <td>int</td>
-          <td>primary key</td>
-        </tr>
-        <tr>
-          <td>tag_name</td>
-          <td>varchar</td>
-          <td>API</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-</ol>
+  <!--Data Models-->
+  <hr>
+  <h6>Our database is designed as follows:</h6>
+  <ol>
+    <li>Products table
+      <table class="table table-hover table-bordered table-sm">
+        <thead>
+          <tr>
+            <th width="35%">Column</th>
+            <th>Data Type</th>
+            <th>Data Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>product_id</td>
+            <td>int</td>
+            <td>primary key</td>
+          </tr>
+          <tr>
+            <td>product_name</td>
+            <td>varchar</td>
+            <td>API</td>
+          </tr>
+          <tr>
+            <td>description</td>
+            <td>text</td>
+            <td>Faker</td>
+          </tr>
+          <tr>
+            <td>price</td>
+            <td>decimal</td>
+            <td>Faker</td>
+          </tr>
+          <tr>
+            <td>image_link</td>
+            <td>text</td>
+            <td>API</td>
+          </tr>
+          <tr>
+            <td>rating</td>
+            <td>decimal</td>
+            <td>API</td>
+          </tr>
+          <tr>
+            <td>category_id</td>
+            <td>int</td>
+            <td>foreign key</td>
+          </tr>
+          <tr>
+            <td>brand_id</td>
+            <td>int</td>
+            <td>foreign key</td>
+          </tr>
+          <tr>
+            <td>product_type_id</td>
+            <td>int</td>
+            <td>foreign key</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>Categories table
+      <table class="table table-hover table-bordered table-sm">
+        <thead>
+          <tr>
+            <th width="35%">Column</th>
+            <th>Data Type</th>
+            <th>Data Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>category_id</td>
+            <td>int</td>
+            <td>primary key</td>
+          </tr>
+          <tr>
+            <td>category_name</td>
+            <td>varchar</td>
+            <td>API</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>Brands table
+      <table class="table table-hover table-bordered table-sm">
+        <thead>
+          <tr>
+            <th width="35%">Column</th>
+            <th>Data Type</th>
+            <th>Data Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>brand_id</td>
+            <td>int</td>
+            <td>primary key</td>
+          </tr>
+          <tr>
+            <td>brand_name</td>
+            <td>varchar</td>
+            <td>API</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>Product_Types table
+      <table class="table table-hover table-bordered table-sm">
+        <thead>
+          <tr>
+            <th width="35%">Column</th>
+            <th>Data Type</th>
+            <th>Data Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>product_type_id</td>
+            <td>int</td>
+            <td>primary key</td>
+          </tr>
+          <tr>
+            <td>prodcut_type_name</td>
+            <td>varchar</td>
+            <td>API</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>Colors table
+      <table class="table table-hover table-bordered table-sm">
+        <thead>
+          <tr>
+            <th width="35%">Column</th>
+            <th>Data Type</th>
+            <th>Data Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>color_id</td>
+            <td>int</td>
+            <td>primary key</td>
+          </tr>
+          <tr>
+            <td>color_name</td>
+            <td>varchar</td>
+            <td>CSV</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>Tags table
+      <table class="table table-hover table-bordered table-sm">
+        <thead>
+          <tr>
+            <th width="35%">Column</th>
+            <th>Data Type</th>
+            <th>Data Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>tag_id</td>
+            <td>int</td>
+            <td>primary key</td>
+          </tr>
+          <tr>
+            <td>tag_name</td>
+            <td>varchar</td>
+            <td>API</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+  </ol>
 
-<!--Table Association-->
-<hr>
-<h6>Associations between tables are shown below:</h6>
-<ul>
-  <li><strong>One-to-Many Relationships</strong></li>
+  <!--Table Association-->
+  <hr>
+  <h6>Associations between tables are shown below:</h6>
   <ul>
-    <li>A category has many products. A product belongs to one category.</li>
-    <li>A brand has many products. A product belongs to one brand.</li>
-    <li>A product type has many products. A product belongs to one product type.</li>
+    <li><strong>One-to-Many Relationships</strong></li>
+    <ul>
+      <li>A category has many products. A product belongs to one category.</li>
+      <li>A brand has many products. A product belongs to one brand.</li>
+      <li>A product type has many products. A product belongs to one product type.</li>
+    </ul>
+    <li><strong>Many-to-Many Relationships</strong></li>
+    <ul>
+      <li>A product has many colors. A color can be adopted by many products.</li>
+      <li>A tag can label many products. A product has many tags.</li>
+    </ul>
   </ul>
-  <li><strong>Many-to-Many Relationships</strong></li>
-  <ul>
-    <li>A product has many colors. A color can be adopted by many products.</li>
-    <li>A tag can label many products. A product has many tags.</li>
-  </ul>
-</ul>
+</div>
 
 

@@ -1,10 +1,11 @@
-<div class="m-3" id="categories">
+<div class="container mt-2" id="categories">
   <h1>Categories</h1>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th style="width: 30%">Category Name</th>
         <th>Products in Category</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -18,13 +19,16 @@
             <%= category.products.count %>
           </td>
           <td>
-            <button type="button" class="btn btn-outline-primary"><%= link_to "Show this category", category %></button>
+            <%= link_to "Show Products", category, class: "btn btn-outline-primary" %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_category_path(category), class: "btn btn-outline-success" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>
 
-<%= link_to "New category", new_category_path %>
+  <%= link_to "New category", new_category_path, class: "btn btn-outline-primary" %>
+</div>
 

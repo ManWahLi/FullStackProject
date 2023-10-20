@@ -1,6 +1,6 @@
-<div class="m-3" id="<%= dom_id product %>">
-  <p>
-    <strong>Product name:</strong>
+<div class="container mt-3" id="<%= dom_id product %>">
+  <p class="h2">
+    <!--<strong>Product name:</strong>-->
     <%= product.product_name %>
   </p>
 
@@ -10,14 +10,16 @@
   </p>
 
   <p>
-    <strong>Price (CA$):</strong>
+    <strong>Price CA$:</strong>
     <%= product.price %>
   </p>
 
   <p>
     <strong>Image:</strong>
   </p>
-  <%= link_to(image_tag(product.image_link, alt: product.product_name), product) %>
+  <p>
+    <%= link_to(image_tag(product.image_link, alt: product.product_name), product) %>
+  </p>
 
   <p>
     <strong>Rating:</strong>
@@ -42,14 +44,14 @@
   <p>
     <strong>Tags:</strong>
     <% product.tags.each do |tag| %>
-      <button type="button" class="btn btn-outline-primary"><%= link_to tag.tag_name, tag %></button>
+      <%= link_to tag.tag_name, tag, class: "badge bg-secondary text-light text-decoration-none" %>
     <% end %>
   </p>
 
   <p>
     <strong>Colors:</strong>
     <% product.colors.each do |color| %>
-      <button type="button" class="btn btn-outline-primary"><%= link_to color.color_name, color %></button>
+      <%= link_to color.color_name, color, class: "badge bg-info text-light text-decoration-none" %>
     <% end %>
   </p>
 </div>

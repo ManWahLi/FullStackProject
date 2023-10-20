@@ -1,10 +1,11 @@
-<div class="m-3" id="colors">
+<div class="container mt-3" id="colors">
   <h1>Colors</h1>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
-        <th style="width: 30%">Color Name</th>
+        <th>Color Name</th>
         <th>Products in Color</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -18,12 +19,15 @@
             <%= color.products.count %>
           </td>
           <td>
-            <button type="button" class="btn btn-outline-primary"><%= link_to "Show this color", color %></button>
+            <%= link_to "Show Products", color, class: "btn btn-outline-primary" %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_color_path(color), class: "btn btn-outline-success" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= link_to "New color", new_color_path, class: "btn btn-outline-primary" %>
 </div>
 
-<%= link_to "New color", new_color_path %>

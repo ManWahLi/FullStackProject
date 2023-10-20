@@ -1,9 +1,7 @@
-<h1>New brand</h1>
+<div class="container mt-3">
+  <h1>New brand</h1>
 
-<%= render "form", brand: @brand %>
+  <%= render "form", brand: @brand %>
 
-<br>
-
-<div>
-  <%= link_to "Back to brands", brands_path %>
+  <%= link_to "Back to brands", brands_path, class: "btn btn-outline-primary" %>
 </div>

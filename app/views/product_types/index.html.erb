@@ -1,10 +1,11 @@
-<div class="m-3" id="product_type">
+<div class="container mt-3" id="product_type">
   <h1>Product Types</h1>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th style="width: 30%">Product Type Name</th>
         <th>Products in Product Type</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -18,13 +19,16 @@
             <%= product_type.products.count %>
           </td>
           <td>
-            <button type="button" class="btn btn-outline-primary"><%= link_to "Show this product type", product_type %></button>
+            <%= link_to "Show Products", product_type, class: "btn btn-outline-primary" %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_product_type_path(product_type), class: "btn btn-outline-success" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= link_to "New product type", new_product_type_path, class: "btn btn-outline-primary" %>
 </div>
 
-<%= link_to "New product type", new_product_type_path %>
 

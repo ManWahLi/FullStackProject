@@ -1,21 +1,32 @@
-<li>
-  <%= link_to 'brands', brands_path %>
-</li>
-<li>
-  <%= link_to 'categories', categories_path %>
-</li>
-<li>
-  <%= link_to 'product_types', product_types_path %>
-</li>
-<li>
-  <%= link_to 'products', products_path %>
-</li>
-<li>
-  <%= link_to 'colors', colors_path %>
-</li>
-<li>
-  <%= link_to 'tags', tags_path %>
-</li>
-<li>
-  <%= link_to 'About', abouts_path %>
-</li>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+<div class="container mt-3">
+  <h1 class="text-center">Welcome to RRC Cosme! 💄</h1>
+  <h2 class="text-center">🛍🛒 Best Seller: Top 5 products of the week!</h2>
+  <div class="row row-cols-3 g-4 mt-3">
+    <% @products.each do |product| %>
+      <div class="col">
+        <div class="card" style="width: 20rem; height: 40rem;">
+          <img src="<%= product.image_link %>" class="card-img-top" alt="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= product.product_name %></h5>
+              <% rating = product.rating.to_f %>
+              <% (1..5).each do |i| %>
+                <!-- Full star for rated value -->
+                <% if i <= rating %>
+                  <i class="fas fa-star" style="color: #f7d702;"></i>
+                <!-- Half star for decimal value -->
+                <% elsif i - 0.5 <= rating %>
+                  <i class="fas fa-star-half-alt" style="color: #f7d702;"></i>
+                <!-- Empty star for unrated value -->
+                <% else %>
+                  <i class="far fa-star" style="color: #f7d702;"></i>
+                <% end %>
+              <% end %>
+            <p class="card-text"><%= product.description %></p>
+            <%= link_to "View Product", product, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

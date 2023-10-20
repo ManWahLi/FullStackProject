@@ -38,20 +38,20 @@
 
   <div>
     <%= form.label :category_id, style: "display: block" %>
-    <%= form.text_field :category_id %>
+    <%= form.text_field :category, value: form.object.new_record? ? "" : product.category.category_name %>
   </div>
 
   <div>
     <%= form.label :brand_id, style: "display: block" %>
-    <%= form.text_field :brand_id %>
+    <%= form.text_field :brand, value: form.object.new_record? ? "" : product.brand.brand_name %>
   </div>
 
   <div>
     <%= form.label :product_type_id, style: "display: block" %>
-    <%= form.text_field :product_type_id %>
+    <%= form.text_field :product_type, value: form.object.new_record? ? "" : product.product_type.product_type_name %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-outline-primary mt-2 mb-3" %>
   </div>
 <% end %>
