@@ -6,9 +6,9 @@
   </h1>
   <h3>Products by Category (Order by Rating)</h3>
   <table class="table">
-    <%= render partial: 'products/thead' %>
+    <%= render partial: 'layouts/components/theadproduct' %>
     <tbody>
-      <%= render partial: 'products/tbody', collection: category.products.order("rating DESC"), as: :product %>
+      <%= render partial: 'layouts/components/tbodyproduct', collection: category.products.order("rating DESC"), as: :product %>
     </tbody>
   </table>
 </div>

@@ -3,6 +3,9 @@
     <%= product.rating %>
   </td>
   <td>
+    <%= render partial: 'layouts/components/ratingstar', locals: { product: product } %>
+  </td>
+  <td>
     <%= link_to(image_tag(product.image_link, alt: product.product_name, width: "60"), product) %>
   </td>
   <td>

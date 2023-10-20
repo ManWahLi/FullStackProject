@@ -2,9 +2,9 @@
   <h1>Products</h1>
   <%= paginate @products %> <!-- Add this line to display pagination links -->
   <table class="table table-hover">
-    <%= render partial: 'thead' %>
+    <%= render partial: 'layouts/components/theadproduct' %>
     <tbody>
-      <%= render partial: 'tbody', collection: @products.order("rating DESC, product_name"), as: :product %>
+      <%= render partial: 'layouts/components/tbodyproduct', collection: @products.order("rating DESC, product_name"), as: :product %>
     </tbody>
   </table>
   <%= link_to "New product", new_product_path, class: "btn btn-outline-primary" %>

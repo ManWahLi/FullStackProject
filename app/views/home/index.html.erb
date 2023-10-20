@@ -9,19 +9,7 @@
           <img src="<%= product.image_link %>" class="card-img-top" alt="card">
           <div class="card-body">
             <h5 class="card-title"><%= product.product_name %></h5>
-              <% rating = product.rating %>
-              <% (1..5).each do |i| %>
-                <!-- Full star for rated value -->
-                <% if i <= rating %>
-                  <i class="fas fa-star" style="color: #f7d702;"></i>
-                <!-- Half star for decimal value -->
-                <% elsif i - 0.5 <= rating %>
-                  <i class="fas fa-star-half-alt" style="color: #f7d702;"></i>
-                <!-- Empty star for unrated value -->
-                <% else %>
-                  <i class="far fa-star" style="color: #f7d702;"></i>
-                <% end %>
-              <% end %>
+              <%= render partial: 'layouts/components/ratingstar', locals: { product: product } %>
             <p class="card-text"><%= product.description %></p>
             <%= link_to "View Product", product, class: "btn btn-primary" %>
           </div>

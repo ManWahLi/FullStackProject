@@ -1,0 +1,12 @@
+<% (1..5).each do |i| %>
+  <!-- Full star for rated value -->
+  <% if i <= product.rating %>
+    <i class="fas fa-star" style="color: #f7d702;"></i>
+  <!-- Half star for decimal value -->
+  <% elsif i - 0.5 <= product.rating %>
+    <i class="fas fa-star-half-alt" style="color: #f7d702;"></i>
+  <!-- Empty star for unrated value -->
+  <% else %>
+    <i class="far fa-star" style="color: #f7d702;"></i>
+  <% end %>
+<% end %>
