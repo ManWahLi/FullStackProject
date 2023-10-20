@@ -6,6 +6,10 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
+  def index
+    @categories = Category.order("category_name ASC").page(params[:page]).per(10)
+  end
+
   # GET /categories/1 or /categories/1.json
   def show
   end

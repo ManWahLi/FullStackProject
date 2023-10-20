@@ -1,5 +1,8 @@
 <div class="container mt-3" id="product_type">
   <h1>Product Types</h1>
+  <div class="d-flex justify-content-end">
+    <%= paginate @product_types, class: "justify-content-end" %>
+  </div>
   <table class="table table-hover">
     <thead>
       <tr>

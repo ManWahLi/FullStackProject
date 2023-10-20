@@ -6,6 +6,10 @@ class TagsController < ApplicationController
     @tags = Tag.all
   end
 
+  def index
+    @tags = Tag.order("tag_name ASC").page(params[:page]).per(10)
+  end
+
   # GET /tags/1 or /tags/1.json
   def show
   end
