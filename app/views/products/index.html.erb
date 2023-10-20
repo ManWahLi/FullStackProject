@@ -1,5 +1,6 @@
 <div class="container mt-3" id="products">
   <h1>Products</h1>
+  <%= paginate @products %> <!-- Add this line to display pagination links -->
   <table class="table table-hover">
     <%= render partial: 'thead' %>
     <tbody>

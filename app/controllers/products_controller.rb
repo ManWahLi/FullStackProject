@@ -6,6 +6,11 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def index
+    @products = Product.order("rating DESC, product_name").page(params[:page]).per(10)
+  end
+
+
   # GET /products/1 or /products/1.json
   def show
     @product = Product.find(params[:id])
