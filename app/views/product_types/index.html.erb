@@ -1,6 +1,6 @@
 <div class="container mt-3" id="product_type">
   <h1>Product Types</h1>
-  <% if @product_types.count < 10 %>
+  <% unless (paginate @product_types).present? %>
     <br><br>
   <% end %>
   <div class="d-flex justify-content-end">
