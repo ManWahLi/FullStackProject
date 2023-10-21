@@ -1,17 +1,19 @@
-<p class="mb-5">
-  <%= @products.count %> products found
-  <% if params[:dropdown][:selected_category].present? %>
-    in <%= Category.find(params[:dropdown][:selected_category]).category_name %> category
-  <% else %>
-    in all categories
-  <% end %>
-  <% if params[:keywords] .present? %>
-    when search for: <%= params[:keywords] %>
-  <% end %>
-</p>
-<table class="table table-hover">
-  <%= render partial: 'layouts/components/theadproduct' %>
-  <tbody>
-    <%= render partial: 'layouts/components/tbodyproduct', collection: @products.order("rating DESC, product_name"), as: :product %>
-  </tbody>
-</table>
+<div class="container mt-5">
+  <p class="fs-4 mb-5">
+    🔎 "<strong><%= @products.count %> product(s)</strong>" found
+    <% if params[:dropdown][:selected_category].present? %>
+      in "<strong><%= Category.find(params[:dropdown][:selected_category]).category_name.capitalize %></strong>" category
+    <% else %>
+      in "<strong>All</strong>" categories
+    <% end %>
+    <% if params[:keywords] .present? %>
+      for your keyword "<strong><%= params[:keywords] %></strong>"
+    <% end %>
+  </p>
+  <table class="table table-hover">
+    <%= render partial: 'layouts/components/theadproduct' %>
+    <tbody>
+      <%= render partial: 'layouts/components/tbodyproduct', collection: @products.order("rating DESC, product_name"), as: :product %>
+    </tbody>
+  </table>
+</div>
