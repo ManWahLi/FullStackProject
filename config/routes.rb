@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'contacts/index'
   root to: "home#index"
   resources :abouts
   resources :tags
