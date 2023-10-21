@@ -2,7 +2,7 @@
   <p class="fs-4 mb-5">
     🔎 "<strong><%= @products.count %></strong>" <%= "product".pluralize(@products.count) %> found
     <% if params[:dropdown][:selected_category].present? %>
-      in "<strong><%= Category.find(params[:dropdown][:selected_category]).category_name %></strong>" category
+      in "<strong><%= @products.first.category.category_name %></strong>" category
     <% else %>
       in "<strong>All</strong>" categories
     <% end %>
