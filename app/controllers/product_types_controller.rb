@@ -1,5 +1,5 @@
 class ProductTypesController < ApplicationController
-  before_action :set_product_type, only: %i[ show edit update destroy ]
+  before_action :set_product_type, only: %i[show edit update destroy]
 
   # GET /product_types or /product_types.json
   def index
@@ -8,6 +8,7 @@ class ProductTypesController < ApplicationController
 
   # GET /product_types/1 or /product_types/1.json
   def show
+    @product_type = ProductType.find(params[:id])
   end
 
   # GET /product_types/new
@@ -16,8 +17,7 @@ class ProductTypesController < ApplicationController
   end
 
   # GET /product_types/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /product_types or /product_types.json
   def create
@@ -25,7 +25,10 @@ class ProductTypesController < ApplicationController
 
     respond_to do |format|
       if @product_type.save
-        format.html { redirect_to product_type_url(@product_type), notice: "Product type was successfully created." }
+        format.html do
+          redirect_to product_type_url(@product_type),
+                      notice: "Product type was successfully created."
+        end
         format.json { render :show, status: :created, location: @product_type }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +41,10 @@ class ProductTypesController < ApplicationController
   def update
     respond_to do |format|
       if @product_type.update(product_type_params)
-        format.html { redirect_to product_type_url(@product_type), notice: "Product type was successfully updated." }
+        format.html do
+          redirect_to product_type_url(@product_type),
+                      notice: "Product type was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @product_type }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +58,22 @@ class ProductTypesController < ApplicationController
     @product_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to product_types_url, notice: "Product type was successfully destroyed." }
+      format.html do
+        redirect_to product_types_url, notice: "Product type was successfully destroyed."
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product_type
-      @product_type = ProductType.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_type_params
-      params.require(:product_type).permit(:product_type_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product_type
+    @product_type = ProductType.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_type_params
+    params.require(:product_type).permit(:product_type_name)
+  end
 end

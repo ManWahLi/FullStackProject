@@ -1,5 +1,5 @@
 class ColorsController < ApplicationController
-  before_action :set_color, only: %i[ show edit update destroy ]
+  before_action :set_color, only: %i[show edit update destroy]
 
   # GET /colors or /colors.json
   def index
@@ -8,6 +8,7 @@ class ColorsController < ApplicationController
 
   # GET /colors/1 or /colors/1.json
   def show
+    @color = Color.find(params[:id])
   end
 
   # GET /colors/new
@@ -16,8 +17,7 @@ class ColorsController < ApplicationController
   end
 
   # GET /colors/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /colors or /colors.json
   def create
@@ -58,13 +58,14 @@ class ColorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_color
-      @color = Color.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def color_params
-      params.require(:color).permit(:color_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_color
+    @color = Color.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def color_params
+    params.require(:color).permit(:color_name)
+  end
 end

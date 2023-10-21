@@ -1,5 +1,8 @@
 <div class="container mt-3" id="products">
   <h1>Products</h1>
+  <% if @products.count < 10 %>
+    <br><br>
+  <% end %>
   <div class="d-flex justify-content-end">
     <%= paginate @products %>
   </div>

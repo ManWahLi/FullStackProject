@@ -1,5 +1,8 @@
 <div class="container mt-3" id="colors">
   <h1>Colors</h1>
+  <% if @colors.count < 10 %>
+    <br><br>
+  <% end %>
   <div class="d-flex justify-content-end">
     <%= paginate @colors %>
   </div>
