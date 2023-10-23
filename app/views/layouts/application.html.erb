@@ -28,8 +28,25 @@
     <!-- End of Dropdox List Bootstrap CSS -->
   </head>
   <body>
-    <%= render partial: 'layouts/components/header' %>
-    <%= yield %>
-    <%= render partial: 'layouts/components/footer' %>
+    <!-- Header Row -->
+    <div class="row">
+      <div class="col">
+        <%= render partial: 'layouts/components/header' %>
+      </div>
+    </div>
+
+    <!-- Body Row -->
+    <div class="row">
+      <div class="col">
+        <%= yield %>
+      </div>
+    </div>
+
+    <!-- Footer Row -->
+    <div class="row">
+      <div class="col">
+        <%= render partial: 'layouts/components/footer' %>
+      </div>
+    </div>
   </body>
 </html>
