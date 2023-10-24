@@ -9,7 +9,6 @@ gem 'bootstrap-icons'
 gem 'bootstrap', '~> 5.0'
 gem 'cssbundling-rails'
 gem 'sassc', '~> 2.0'
-gem 'kaminari'
 
 # Kaminari pagination [https://github.com/kaminari/kaminari]
 gem 'kaminari'
