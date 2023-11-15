@@ -1,5 +1,3 @@
-require "csv"
-require "faker"
 require "net/http"
 require "json"
 
@@ -20,18 +18,6 @@ ActiveRecord::Base.connection.execute(
     'categories', 'products', 'product_colors', 'product_tags');"
 )
 
-# Import data from a csv file to Color table
-filename = Rails.root.join("db/color.csv")
-puts "Loading Color from the CSV file: #{filename}"
-csv_data = File.read(filename)
-colors = CSV.parse(csv_data, headers: true, encoding: "utf-8")
-
-colors.each do |c|
-  Color.create(color_name: c["color_name"])
-end
-
-puts "Created #{Color.count} colors."
-
 # Import data from API and Faker for other tables
 url = "http://makeup-api.herokuapp.com/api/v1/products.json"
 uri = URI(url)
@@ -48,8 +34,8 @@ products.each do |p|
   product_type = ProductType.find_or_create_by(product_type_name: p["product_type"].capitalize)
   product = brand.products.find_or_create_by(
     product_name: p["name"],
-    price:        Faker::Commerce.price,
-    description:  Faker::Lorem.sentence,
+    price:        p["price"].to_i * 10,
+    description:  p["description"],
     image_link:   p["image_link"],
     rating:       p["rating"],
     category:,
@@ -60,12 +46,17 @@ products.each do |p|
   tags = p["tag_list"]
   tags.each do |tag_name|
     tag = Tag.find_or_create_by(tag_name:)
-    ProductTag.create(product:, tag:)
+    ProductTag.find_or_create_by(product:, tag:)
   end
 
-  # Randomize product colors and create data in ProductColor table
-  rand(1..5).times do
-    color = Color.find(rand(1..20))
+  colors = p["product_colors"]
+  colors.each do |c|
+    color_name = c["colour_name"]
+    color = Color.find_or_create_by(color_name:)
     ProductColor.find_or_create_by(product:, color:)
   end
+
+  puts("Created product #{product.product_name}.")
 end
+
+puts("#{Product.count} #{'product'.pluralize(Product.count)} created.")

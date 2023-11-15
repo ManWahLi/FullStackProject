@@ -12,6 +12,6 @@
     <%= link_to product.product_name, product %>
   </td>
   <td>
-    <%= product.price %>
+    <%= product.price.to_f / 10 %>
   </td>
 </tr>
