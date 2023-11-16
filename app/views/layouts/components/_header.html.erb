@@ -13,12 +13,16 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
         <!-- End of Language Dropdown List-->
-      <li class="nav-item">
+      <li class="nav-item <%= 'active' if current_page?(contacts_index_path) %>">
         <%= link_to 'Contact', contacts_index_path, class: 'nav-link fs-5 mr-3' %>
       </li>
     </ul>
 
-    <%= link_to 'RRC Cosme', root_path, class: 'nav-link mb-0 font-weight-bold display-4 mr-3', style: 'font-family: arail, sans-serif;' %>
+    <div class="container">
+      <div class="col text-center">
+        <%= link_to 'RRC Cosme', root_path, class: 'nav-link mb-0 font-weight-bold display-4', style: 'font-family: arail, sans-serif;' %>
+      </div>
+    </div>
 
     <%= form_with(url:search_products_path, method: :get, local: true, class: "form-inline my-2 my-lg-0") do %>
       <%= text_field_tag(:keywords, nil, class: "form-control mr-sm-2 border-light-1", placeholder: 'Search for Products',
@@ -48,28 +52,28 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item active">
-            <%= link_to 'Home', root_path, class: 'nav-link fs-5 mr-3' %><span class="sr-only">(current)</span>
+          <li class="nav-item <%= 'active' if current_page?(root_path) %>">
+            <%= link_to 'Home', root_path, class: 'nav-link fs-5 mr-3' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(brands_path) %>">
             <%= link_to 'Brand', brands_path, class: 'nav-link fs-5 mr-3' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
             <%= link_to 'Category', categories_path, class: 'nav-link fs-5 mr-3' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(product_types_path) %>">
             <%= link_to 'Product Type', product_types_path, class: 'nav-link fs-5 mr-3' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(products_path) %>">
             <%= link_to 'Product', products_path, class: 'nav-link fs-5 mr-3' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(colors_path) %>">
             <%= link_to 'Color', colors_path, class: 'nav-link fs-5 mr-3' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(tags_path) %>">
             <%= link_to 'Tag', tags_path, class: 'nav-link fs-5 mr-3' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(abouts_path) %>">
             <%= link_to 'About', abouts_path, class: 'nav-link fs-5 mr-3' %>
           </li>
         </ul>
