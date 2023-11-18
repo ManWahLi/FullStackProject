@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment_date: 2023-11-17 22:35:43
+  delivery_date: 2023-11-17 22:35:43
+  customer: one
+  order_status: one
+
+two:
+  payment_date: 2023-11-17 22:35:43
+  delivery_date: 2023-11-17 22:35:43
+  customer: two
+  order_status: two
