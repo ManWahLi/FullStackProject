@@ -1,3 +1,4 @@
+require "csv"
 require "net/http"
 require "json"
 
@@ -18,6 +19,27 @@ ActiveRecord::Base.connection.execute(
     'categories', 'products', 'product_colors', 'product_tags');"
 )
 
+# Import data from a csv file to Color table
+filename = Rails.root.join("db/product_color.csv")
+puts "Loading Color from the CSV file: #{filename}"
+csv_data = File.read(filename)
+colors = CSV.parse(csv_data, headers: true, encoding: "utf-8")
+
+colors.each do |c|
+  Color.create(color_name: c["product_color"])
+end
+
+puts "Created #{Color.count} colors."
+
+# Create data in Tag and ProductTag table
+tags = ["On Sale", "New Arrival", "Hot Item", "Organic", "Exclusive", "Limited Edition"]
+
+tags.each do |t|
+  Tag.create(tag_name: t)
+end
+
+puts "Created #{Tag.count} product tags."
+
 # Import data from API and Faker for other tables
 url = "http://makeup-api.herokuapp.com/api/v1/products.json"
 uri = URI(url)
@@ -25,34 +47,35 @@ response = Net::HTTP.get(uri)
 products = JSON.parse(response)
 
 products.each do |p|
-  next unless %w[brand product_type category name tag_list image_link rating].all? do |key|
+  next unless %w[brand product_type category name image_link rating].all? do |key|
                 p[key].present?
               end
 
   brand = Brand.find_or_create_by(brand_name: p["brand"].split.map(&:capitalize).join(" "))
-  category = Category.find_or_create_by(category_name: p["category"].capitalize)
+  category = Category.find_or_create_by(category_name: p["category"].capitalize.gsub("_", ""))
   product_type = ProductType.find_or_create_by(product_type_name: p["product_type"].capitalize)
-  product = brand.products.find_or_create_by(
-    product_name: p["name"],
+  product = Product.find_or_create_by(
+    product_name: p["name"].strip,
     price:        p["price"].to_i * 10,
     description:  p["description"],
     image_link:   p["image_link"],
     rating:       p["rating"],
+    brand:,
     category:,
     product_type:
   )
 
-  # Retrieve data from product tag list and create data in Tag and ProductTag table
-  tags = p["tag_list"]
-  tags.each do |tag_name|
-    tag = Tag.find_or_create_by(tag_name:)
+  next unless product.persisted?
+
+  # Create data in Tag and ProductTag table
+  rand(1..2).times do
+    tag = Tag.find(rand(1..Tag.count))
     ProductTag.find_or_create_by(product:, tag:)
   end
 
-  colors = p["product_colors"]
-  colors.each do |c|
-    color_name = c["colour_name"]
-    color = Color.find_or_create_by(color_name:)
+  # Randomize product colors and create data in ProductColor table
+  rand(1..5).times do
+    color = Color.find(rand(1..Color.count))
     ProductColor.find_or_create_by(product:, color:)
   end
 
