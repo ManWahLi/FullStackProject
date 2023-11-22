@@ -9,7 +9,7 @@
   <table class="table table-hover">
     <%= render partial: 'layouts/components/theadproduct' %>
     <tbody>
-      <%= render partial: 'layouts/components/tbodyproduct', collection: @products.order("rating DESC, product_name"), as: :product %>
+      <%= render partial: 'layouts/components/tbodyproduct', collection: @products.order("rating DESC, name"), as: :product %>
     </tbody>
   </table>
   <%= link_to "New product", new_product_path, class: "btn btn-outline-primary" %>

@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 
   # GET /tags or /tags.json
   def index
-    @tags = Tag.order("tag_name ASC").page(params[:page]).per(10)
+    @tags = Tag.order("name ASC").page(params[:page]).per(10)
   end
 
   # GET /tags/1 or /tags/1.json
@@ -66,6 +66,6 @@ class TagsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def tag_params
-    params.require(:tag).permit(:tag_name)
+    params.require(:tag).permit(:name)
   end
 end

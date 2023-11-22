@@ -3,7 +3,7 @@ class BrandsController < ApplicationController
 
   # GET /brands or /brands.json
   def index
-    @brands = Brand.order("brand_name ASC").page(params[:page]).per(10)
+    @brands = Brand.order("name ASC").page(params[:page]).per(10)
   end
 
   # GET /brands/1 or /brands/1.json
@@ -66,6 +66,6 @@ class BrandsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def brand_params
-    params.require(:brand).permit(:brand_name)
+    params.require(:brand).permit(:name)
   end
 end

@@ -6,10 +6,10 @@
     <%= render partial: 'layouts/components/ratingstar', locals: { product: product } %>
   </td>
   <td>
-    <%= link_to(image_tag(product.image_link, alt: product.product_name, width: "60"), product) %>
+    <%= link_to(image_tag(product.image_link, alt: product.name, width: "60"), product) %>
   </td>
   <td>
-    <%= link_to product.product_name, product %>
+    <%= link_to product.name, product %>
   </td>
   <td>
     <%= product.price.to_f / 10 %>

@@ -3,6 +3,7 @@ require "net/http"
 require "json"
 
 # Delete all data
+AdminUser.delete_all
 ProductTag.delete_all
 ProductColor.delete_all
 Product.delete_all
@@ -16,7 +17,7 @@ Tag.delete_all
 ActiveRecord::Base.connection.execute(
   "DELETE FROM sqlite_sequence WHERE name IN (
     'tags', 'brands', 'colors', 'product_types',
-    'categories', 'products', 'product_colors', 'product_tags');"
+    'categories', 'products', 'product_colors', 'product_tags', 'admin_users');"
 )
 
 # Import data from a csv file to Color table
@@ -26,16 +27,16 @@ csv_data = File.read(filename)
 colors = CSV.parse(csv_data, headers: true, encoding: "utf-8")
 
 colors.each do |c|
-  Color.create(color_name: c["product_color"])
+  Color.create(name: c["product_color"])
 end
 
 puts "Created #{Color.count} colors."
 
 # Create data in Tag and ProductTag table
-tags = ["On Sale", "New Arrival", "Hot Item", "Organic", "Exclusive", "Limited Edition"]
+tags = ["On Sale", "Hot Item", "Organic", "Exclusive", "Limited Edition"]
 
 tags.each do |t|
-  Tag.create(tag_name: t)
+  Tag.create(name: t)
 end
 
 puts "Created #{Tag.count} product tags."
@@ -51,11 +52,11 @@ products.each do |p|
                 p[key].present?
               end
 
-  brand = Brand.find_or_create_by(brand_name: p["brand"].split.map(&:capitalize).join(" "))
-  category = Category.find_or_create_by(category_name: p["category"].capitalize.gsub("_", ""))
-  product_type = ProductType.find_or_create_by(product_type_name: p["product_type"].capitalize)
+  brand = Brand.find_or_create_by(name: p["brand"].split.map(&:capitalize).join(" "))
+  category = Category.find_or_create_by(name: p["category"].capitalize.gsub("_", ""))
+  product_type = ProductType.find_or_create_by(name: p["product_type"].capitalize)
   product = Product.find_or_create_by(
-    product_name: p["name"].strip,
+    name:         p["name"].strip,
     price:        p["price"].to_i * 10,
     description:  p["description"],
     image_link:   p["image_link"],
@@ -79,7 +80,8 @@ products.each do |p|
     ProductColor.find_or_create_by(product:, color:)
   end
 
-  puts("Created product #{product.product_name}.")
+  puts("Created product #{product.name}.")
 end
 
 puts("#{Product.count} #{'product'.pluralize(Product.count)} created.")
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

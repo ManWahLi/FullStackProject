@@ -3,7 +3,7 @@ class ColorsController < ApplicationController
 
   # GET /colors or /colors.json
   def index
-    @colors = Color.order("color_name ASC").page(params[:page]).per(10)
+    @colors = Color.order("name ASC").page(params[:page]).per(10)
   end
 
   # GET /colors/1 or /colors/1.json
@@ -66,6 +66,6 @@ class ColorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def color_params
-    params.require(:color).permit(:color_name)
+    params.require(:color).permit(:name)
   end
 end

@@ -27,8 +27,8 @@
     <%= form_with(url:search_products_path, method: :get, local: true, class: "form-inline my-2 my-lg-0") do %>
       <%= text_field_tag(:keywords, nil, class: "form-control mr-sm-2 border-light-1", placeholder: 'Search for Products',
                           style: "width: 200px;") %>
-      <%= collection_select(:dropdown, :selected_category, Category.order(:category_name),
-                            :id, :category_name, {include_blank: "All categories"}, class: "form-select mr-sm-2 border-light-2",
+      <%= collection_select(:dropdown, :selected_category, Category.order(:name),
+                            :id, :name, {include_blank: "All categories"}, class: "form-select mr-sm-2 border-light-2",
                             style: "width: 200px;") %>
       <%= submit_tag("Search", class: "btn btn-outline-primary mr-2 my-2 my-sm-0") %>
       <a href="#">

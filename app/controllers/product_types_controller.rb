@@ -3,7 +3,7 @@ class ProductTypesController < ApplicationController
 
   # GET /product_types or /product_types.json
   def index
-    @product_types = ProductType.order("product_type_name ASC").page(params[:page]).per(10)
+    @product_types = ProductType.order("name ASC").page(params[:page]).per(10)
   end
 
   # GET /product_types/1 or /product_types/1.json
@@ -74,6 +74,6 @@ class ProductTypesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_type_params
-    params.require(:product_type).permit(:product_type_name)
+    params.require(:product_type).permit(:name)
   end
 end

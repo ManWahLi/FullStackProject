@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.order("category_name ASC").page(params[:page]).per(10)
+    @categories = Category.order("name ASC").page(params[:page]).per(10)
   end
 
   # GET /categories/1 or /categories/1.json

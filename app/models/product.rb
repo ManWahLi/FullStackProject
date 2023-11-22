@@ -8,8 +8,8 @@ class Product < ApplicationRecord
   has_many :product_tags
   has_many :tags, through: :product_tags
 
-  validates :product_name, :description, :price, presence: true
-  validates :product_name, uniqueness: true
+  validates :name, :description, :price, presence: true
+  validates :name, uniqueness: true
   validates :price, numericality: { format: { with: /\A\d+(\.\d{2})?\z/ } }
   validates :rating, numericality: { format: { with: /\A\d+(\.\d{2})?\z/ } }
 end

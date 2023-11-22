@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.order("rating DESC, product_name").page(params[:page]).per(10)
+    @products = Product.order("rating DESC, name").page(params[:page]).per(10)
   end
 
   # GET /products/1 or /products/1.json
@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
     wildcard_search = "%#{params[:keywords]}%"
     category_id = params[:dropdown][:selected_category]
 
-    @products = Product.where("product_name LIKE ?", wildcard_search)
+    @products = Product.where("name LIKE ?", wildcard_search)
 
     @products = @products.where("category_id = ?", category_id) if category_id.present?
   end
@@ -79,7 +79,7 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:product_name, :description, :price, :image_link, :rating,
+    params.require(:product).permit(:name, :description, :price, :image_link, :rating,
                                     :category_id, :brand_id, :product_type_id)
   end
 end
