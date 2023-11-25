@@ -3,6 +3,9 @@ require "net/http"
 require "json"
 
 # Delete all data
+ActiveStorage::VariantRecord.delete_all
+ActiveStorage::Attachment.delete_all
+ActiveStorage::Blob.delete_all
 AdminUser.delete_all
 ProductTag.delete_all
 ProductColor.delete_all
@@ -17,7 +20,9 @@ Tag.delete_all
 ActiveRecord::Base.connection.execute(
   "DELETE FROM sqlite_sequence WHERE name IN (
     'tags', 'brands', 'colors', 'product_types',
-    'categories', 'products', 'product_colors', 'product_tags', 'admin_users');"
+    'categories', 'products', 'product_colors',
+    'product_tags', 'admin_users', 'active_storage_attachments',
+    'active_storage_blobs', 'active_storage_variant_records');"
 )
 
 # Import data from a csv file to Color table
@@ -84,4 +89,7 @@ products.each do |p|
 end
 
 puts("#{Product.count} #{'product'.pluralize(Product.count)} created.")
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if Rails.env.development?
+  AdminUser.create!(email: "admin@example.com", password: "password",
+                    password_confirmation: "password")
+end
