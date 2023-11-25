@@ -1,19 +1,24 @@
 <div class="container mt-3" id="<%= dom_id product %>">
   <div class="text-left">
     <p class="h2">
-      <% if product.brand.image.present? %>
-        <%= link_to image_tag(product.brand.image.variant(resize_to_limit: [150, 150])), product.brand %>
-      <% end %>
+      <!--<% if product.brand.image.present? %>
+        <%= link_to image_tag(product.brand.image.variant(resize_to_limit: [150, 120])), product.brand %>
+      <% end %>-->
       <%= product.name %>
     </p>
   </div>
   <div class="row mt-5 fs-5">
-    <div class="col-md-7 text-center">
+    <div class="col mt-3 text-left">
+      <% if product.brand.image.present? %>
+        <%= link_to image_tag(product.brand.image.variant(resize_to_limit: [150, 130])), product.brand %>
+      <% end %>
+    </div>
+    <div class="col-md-5 text-center">
       <p>
         <%= link_to(image_tag(product.image_link, alt: product.name, width: '300'), product) %>
       </p>
     </div>
-    <div class="col-md-5 mt-4">
+    <div class="col-md-5 mt-2">
       <p>
         <strong>Price CA$:</strong>
         <%= product.price.to_f / 10 %>
