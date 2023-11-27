@@ -15,6 +15,16 @@
             <p class="card-text"><%= product.description.truncate(100, separator: ' ', omission: ' ...') %></p>
             <%= link_to "View Product", product, class: "btn btn-primary align-bottom" %>
           </div>
+          <aside>
+            <!--
+            <h3><%= link_to product.name, product %></h3>
+            <p><%= product.description %></p>
+            -->
+            <%= form_with url:cart_index_path, method: :post do %>
+            <%= hidden_field_tag(:id,product.id)%>
+              <%= button_tag '✚ Add to Cart' %>
+            <%  end %>
+          </aside>
         </div>
       </div>
     <% end %>
