@@ -20,7 +20,7 @@
             <h3><%= link_to product.name, product %></h3>
             <p><%= product.description %></p>
             -->
-            <%= form_with url:cart_index_path, method: :post do %>
+            <%= form_with url:carts_path, method: :post do %>
             <%= hidden_field_tag(:id,product.id)%>
               <%= button_tag '✚ Add to Cart' %>
             <%  end %>

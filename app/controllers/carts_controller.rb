@@ -1,4 +1,6 @@
-class CartController < ApplicationController
+class CartsController < ApplicationController
+  def index; end
+
   # POST /CART
   def create
     logger.debug("adding #{params[:id]} to cart.")

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  get "carts/index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'contacts/index'
+  get "contacts/index"
   root to: "home#index"
   resources :abouts
   resources :tags
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   resources :brands
   resources :product_types
   resources :categories
-  resources :cart, only: %i[create destroy]
+  resources :carts
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
