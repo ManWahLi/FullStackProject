@@ -9,7 +9,7 @@
           <th>Product Name</th>
           <th>Price CA$</th>
           <th>Quantity</th>
-          <th>Edit</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -31,14 +31,16 @@
               <%= product.price.to_f / 10 %>
             </td>
             <td>
-              1
+              qty
             </td>
             <td>
-              <%= link_to "➖", carts_path(product), method: :delete %>
+              <%= button_to "Remove from Cart", cart_path(product), method: :delete %>
             </td>
           </tr>
         <% end %>
       </tbody>
     <table>
+  <% else %>
+    <p>Your shopping cart is empty.</p>
   <% end %>
 </div>

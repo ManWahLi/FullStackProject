@@ -54,6 +54,17 @@
           <%= link_to color.name, color, class: "badge bg-info text-light text-decoration-none" %>
         <% end %>
       </p>
+
+      <p>
+        <%= form_with url:carts_path, method: :post do %>
+          <%= hidden_field_tag(:id,product.id)%>
+          <%= button_tag '✚ Add to Cart' %>
+        <% end %>
+      </p>
+
+      <p>
+        <%= product.description %>
+      </p>
     </div>
   </div>
 </div>
