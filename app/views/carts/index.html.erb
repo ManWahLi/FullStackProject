@@ -31,10 +31,14 @@
               <%= product.price.to_f / 10 %>
             </td>
             <td>
-              qty
+              <%= form_with url:carts_path, method: :post do |form| %>
+                <!--pass product id and selected quantity to shopping cart-->
+                <%= hidden_field_tag(:id, product.id)%>
+                <%= form.number_field(:quantity, value: session[:shopping_cart][product.id.to_s]) %>
+              <% end %>
             </td>
             <td>
-              <%= button_to "Remove from Cart", cart_path(product), method: :delete %>
+              <%= button_to "Remove", cart_path(product), method: :delete %>
             </td>
           </tr>
         <% end %>

@@ -11,20 +11,20 @@
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= product.name %></h5>
+            <p>
               <%= render partial: 'layouts/components/ratingstar', locals: { product: product } %>
+              <strong>CA$:</strong>
+              <%= product.price.to_f / 10 %>
+            </p>
             <p class="card-text"><%= product.description.truncate(100, separator: ' ', omission: ' ...') %></p>
-            <%= link_to "View Product", product, class: "btn btn-primary align-bottom" %>
-          </div>
-          <aside>
-            <!--
-            <h3><%= link_to product.name, product %></h3>
-            <p><%= product.description %></p>
-            -->
+            <%= link_to "View Product", product, class: "card-link" %>
             <%= form_with url:carts_path, method: :post do %>
-              <%= hidden_field_tag(:id,product.id)%>
-              <%= button_tag 'Add to Cart' %>
+              <!--pass id and quantity (default as 1) to shopping cart-->
+              <%= hidden_field_tag(:id, product.id) %>
+              <%= hidden_field_tag(:quantity, 1) %>
+              <%= button_tag '✚ Add to Cart' %>
             <% end %>
-          </aside>
+          </div>
         </div>
       </div>
     <% end %>

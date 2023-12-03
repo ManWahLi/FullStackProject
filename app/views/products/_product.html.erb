@@ -56,8 +56,11 @@
       </p>
 
       <p>
-        <%= form_with url:carts_path, method: :post do %>
-          <%= hidden_field_tag(:id,product.id)%>
+        <%= form_with url:carts_path, method: :post do |form| %>
+          <!--pass product id and selected quantity to shopping cart-->
+          <%= hidden_field_tag(:id, product.id)%>
+          <%= form.label(:quantity, 'Quantity:') %>
+          <%= form.number_field(:quantity, value: 1, min: 1) %>
           <%= button_tag '✚ Add to Cart' %>
         <% end %>
       </p>

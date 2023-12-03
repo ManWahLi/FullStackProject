@@ -6,11 +6,12 @@ class ApplicationController < ActionController::Base
 
   def initialize_session
     # this will initialize the shopping cart to empty for new users
-    session[:shopping_cart] ||= []
+    # dictionary datatype with product id as keys and quantity as value
+    session[:shopping_cart] ||= {}
   end
 
   def cart
-    # you can pass an array of ids, and you'll get back a collection
-    Product.find(session[:shopping_cart])
+    # pass dictionary keys to find
+    Product.find(session[:shopping_cart].keys)
   end
 end
