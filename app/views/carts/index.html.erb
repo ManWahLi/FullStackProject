@@ -1,4 +1,7 @@
 <div class="container mt-5">
+  <% if flash[:notice] %>
+    <h6 class="p-3 mb-2 bg-info text-white"><%= flash[:notice] %></h6>
+  <% end %>
   <% if cart.present? %>
     <table class="table table-hover">
       <thead>
@@ -6,10 +9,9 @@
           <th>Rating</th>
           <th></th>
           <th>Image</th>
-          <th>Product Name</th>
-          <th>Price CA$</th>
-          <th>Quantity</th>
-          <th></th>
+          <th style="width: 55%">Product Name</th>
+          <th>CA$</th>
+          <th style="width: 10%">Quantity</th>
         </tr>
       </thead>
       <tbody>
@@ -31,13 +33,11 @@
               <%= product.price.to_f / 10 %>
             </td>
             <td>
-              <%= form_with url:carts_path, method: :post do |form| %>
+              <%= form_with url:cart_path(product), method: :patch do |form| %>
                 <!--pass product id and selected quantity to shopping cart-->
-                <%= hidden_field_tag(:id, product.id)%>
-                <%= form.number_field(:quantity, value: session[:shopping_cart][product.id.to_s]) %>
+                <%= form.number_field(:quantity, value: session[:shopping_cart][product.id.to_s], style: "width: 60px;") %>
+                <%= form.submit 'Update' %>
               <% end %>
-            </td>
-            <td>
               <%= button_to "Remove", cart_path(product), method: :delete %>
             </td>
           </tr>

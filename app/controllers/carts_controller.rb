@@ -15,10 +15,24 @@ class CartsController < ApplicationController
     redirect_to root_path
   end
 
+  def update
+    id = params[:id]
+    quantity = params[:quantity].to_i
+    return unless session[:shopping_cart][id] != quantity
+
+    session[:shopping_cart][id] = quantity
+    product_name = Product.find(id).name
+    flash[:notice] = "Quantity of #{product_name} is updated to #{quantity}."
+    redirect_to carts_path
+  end
+
   # DELETE /CART
   def destroy
     # removes params[:id] from cart
+    id = params[:id]
     session[:shopping_cart].delete(params[:id])
+    product_name = Product.find(id).name
+    flash[:notice] = "Removed #{product_name} from cart."
     redirect_to carts_path
   end
 end
