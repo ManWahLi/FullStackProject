@@ -1,23 +1,29 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
+  before_action :add_index_breadcrumb, only: [:show, :new, :edit]
 
   # GET /products or /products.json
   def index
     @products = Product.order("rating DESC, name").page(params[:page]).per(10)
+    add_breadcrumb('Products')
   end
 
   # GET /products/1 or /products/1.json
   def show
     @product = Product.find(params[:id])
+    add_breadcrumb(@product.name)
   end
 
   # GET /products/new
   def new
     @product = Product.new
+    add_breadcrumb('New')
   end
 
   # GET /products/1/edit
-  def edit; end
+  def edit
+    add_breadcrumb('Edit')
+  end
 
   # POST /products or /products.json
   def create
@@ -81,5 +87,12 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :description, :price, :image_link, :rating,
                                     :category_id, :brand_id, :product_type_id)
+  end
+
+  def add_index_breadcrumb
+    if @product.brand.present?
+      add_breadcrumb('Brands', brand_path)
+      add_breadcrumb @product.brand.name, brand_path(@product.brand)
+    end
   end
 end

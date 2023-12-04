@@ -1,23 +1,30 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: %i[show edit update destroy]
+  before_action :add_index_breadcrumb, only: [:show, :new, :edit]
 
   # GET /brands or /brands.json
   def index
     @brands = Brand.order("name ASC").page(params[:page]).per(10)
+    add_breadcrumb('Brands')
   end
 
   # GET /brands/1 or /brands/1.json
   def show
     @brand = Brand.find(params[:id])
+    add_breadcrumb(@brand.name)
   end
 
   # GET /brands/new
   def new
     @brand = Brand.new
+    add_breadcrumb('New')
   end
 
   # GET /brands/1/edit
-  def edit; end
+  def edit
+    add_breadcrumb(@brand.name, brand_path(@brand))
+    add_breadcrumb('Edit')
+  end
 
   # POST /brands or /brands.json
   def create
@@ -67,5 +74,9 @@ class BrandsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def brand_params
     params.require(:brand).permit(:name)
+  end
+
+  def add_index_breadcrumb
+    add_breadcrumb('Brands', brands_path)
   end
 end

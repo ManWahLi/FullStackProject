@@ -308,7 +308,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin (= 2.11)
   bootsnap
-  bootstrap (~> 5.0)
+  bootstrap (~> 5.2, >= 5.2.3)
   bootstrap-icons
   capybara
   cssbundling-rails

@@ -1,2 +1,14 @@
 @import 'bootstrap';
 @import 'bootstrap-icons';
+
+// Define the variable with quotes using the quote function
+$breadcrumb-divider: quote(">");
+
+// Use the variable in your styles
+nav[aria-label="breadcrumb"] {
+  --bs-breadcrumb-divider: #{$breadcrumb-divider};
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: var(--bs-breadcrumb-divider);
+  }
+}

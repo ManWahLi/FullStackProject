@@ -6,7 +6,7 @@ ruby "3.1.2"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 
 gem 'bootstrap-icons'
-gem 'bootstrap', '~> 5.0'
+gem 'bootstrap', '~> 5.2', '>= 5.2.3'
 gem 'cssbundling-rails'
 gem 'sassc', '~> 2.0'
 
