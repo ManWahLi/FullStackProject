@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   has_many :colors, through: :product_colors
   has_many :product_tags
   has_many :tags, through: :product_tags
+  accepts_nested_attributes_for :product_tags, allow_destroy: true
 
   validates :name, :description, :price, presence: true
   validates :name, uniqueness: true

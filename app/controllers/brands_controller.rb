@@ -1,11 +1,11 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: %i[show edit update destroy]
-  before_action :add_index_breadcrumb, only: [:show, :new, :edit]
+  before_action :add_index_breadcrumb, only: %i[show new edit]
 
   # GET /brands or /brands.json
   def index
     @brands = Brand.order("name ASC").page(params[:page]).per(10)
-    add_breadcrumb('Brands')
+    add_breadcrumb("Brands")
   end
 
   # GET /brands/1 or /brands/1.json
@@ -17,13 +17,13 @@ class BrandsController < ApplicationController
   # GET /brands/new
   def new
     @brand = Brand.new
-    add_breadcrumb('New')
+    add_breadcrumb("New")
   end
 
   # GET /brands/1/edit
   def edit
     add_breadcrumb(@brand.name, brand_path(@brand))
-    add_breadcrumb('Edit')
+    add_breadcrumb("Edit")
   end
 
   # POST /brands or /brands.json
@@ -77,6 +77,6 @@ class BrandsController < ApplicationController
   end
 
   def add_index_breadcrumb
-    add_breadcrumb('Brands', brands_path)
+    add_breadcrumb("Brands", brands_path)
   end
 end
