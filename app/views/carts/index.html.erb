@@ -35,7 +35,7 @@
             <td>
               <%= form_with url:cart_path(product), method: :patch do |form| %>
                 <!--pass product id and selected quantity to shopping cart-->
-                <%= form.number_field(:quantity, value: session[:shopping_cart][product.id.to_s], style: "width: 60px;") %>
+                <%= form.number_field(:quantity, value: session[:shopping_cart][product.id.to_s], min: 1, style: "width: 60px;") %>
                 <%= form.submit 'Update' %>
               <% end %>
               <%= button_to "Remove", cart_path(product), method: :delete %>
