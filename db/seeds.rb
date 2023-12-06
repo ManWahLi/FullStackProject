@@ -15,6 +15,7 @@ Brand.delete_all
 ProductType.delete_all
 Color.delete_all
 Tag.delete_all
+Province.delete_all
 
 # Reseed id of each table
 ActiveRecord::Base.connection.execute(
@@ -22,8 +23,27 @@ ActiveRecord::Base.connection.execute(
     'tags', 'brands', 'colors', 'product_types',
     'categories', 'products', 'product_colors',
     'product_tags', 'admin_users', 'active_storage_attachments',
-    'active_storage_blobs', 'active_storage_variant_records');"
+    'active_storage_blobs', 'active_storage_variant_records',
+    'provinces');"
 )
+
+# Import data from a csv file to Province table
+filename = Rails.root.join("db/tax_rate.csv")
+puts "Loading Color from the CSV file: #{filename}"
+csv_data = File.read(filename)
+provinces = CSV.parse(csv_data, headers: true, encoding: "utf-8")
+
+provinces.each do |p|
+  Province.create(
+    name: p["PROVINCE"],
+    gst:  p["GST"],
+    hst:  p["HST"],
+    qst:  p["QST"],
+    pst:  p["PST"]
+  )
+end
+
+puts "Created #{Province.count} provinces."
 
 # Import data from a csv file to Color table
 filename = Rails.root.join("db/product_color.csv")

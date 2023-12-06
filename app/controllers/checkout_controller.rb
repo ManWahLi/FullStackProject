@@ -10,6 +10,7 @@ class CheckoutController < ApplicationController
 
     # define an array to store products detail
     product_data_array = []
+    total_price = 0
 
     session[:shopping_cart].keys.each do |id|
       product = Product.find(id)
@@ -18,13 +19,38 @@ class CheckoutController < ApplicationController
           currency:     "cad",
           product_data: {
             name:        product.name,
-            description: product.description
+            description: product.description.truncate(100, separator: " ", omission: " ...")
           },
           unit_amount:  product.price
         },
         quantity:   session[:shopping_cart][product.id.to_s]
       }
+      total_price += product.price * session[:shopping_cart][product.id.to_s]
       product_data_array << product_details
+    end
+
+    province = Province.find(params[:province])
+    taxes = {
+      "GST" => province.gst,
+      "HST" => province.hst,
+      "QST" => province.qst,
+      "PST" => province.pst
+    }
+
+    taxes.each do |tax, value|
+      next unless value > 0
+
+      tax_detail = {
+        price_data: {
+          currency:     "cad",
+          product_data: {
+            name: "#{tax} - #{value * 100}%"
+          },
+          unit_amount:  (total_price * value).to_i
+        },
+        quantity:   1
+      }
+      product_data_array << tax_detail
     end
 
     # Handle taxes based on province input by user

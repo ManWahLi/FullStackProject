@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  before_action :load_provinces
+
   def index; end
 
   # POST /CART
@@ -34,5 +36,11 @@ class CartsController < ApplicationController
     product_name = Product.find(id).name
     flash[:notice] = "Removed #{product_name} from cart."
     redirect_to carts_path
+  end
+
+  private
+
+  def load_provinces
+    @provinces = Province.all
   end
 end
