@@ -14,7 +14,7 @@
             <p>
               <%= render partial: 'layouts/components/ratingstar', locals: { product: product } %>
               <strong>CA$:</strong>
-              <%= product.price.to_f / 10 %>
+              <%= product.price.to_f / 100 %>
             </p>
             <p class="card-text"><%= product.description.truncate(100, separator: ' ', omission: ' ...') %></p>
             <%= link_to "View Product", product, class: "card-link" %>

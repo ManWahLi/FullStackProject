@@ -62,7 +62,7 @@ products.each do |p|
   product_type = ProductType.find_or_create_by(name: p["product_type"].capitalize)
   product = Product.find_or_create_by(
     name:         p["name"].strip,
-    price:        p["price"].to_i * 10,
+    price:        p["price"].to_i * 100,
     description:  p["description"],
     image_link:   p["image_link"],
     rating:       p["rating"],

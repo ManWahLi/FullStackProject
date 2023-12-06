@@ -30,7 +30,7 @@
               <%= link_to product.name, product %>
             </td>
             <td>
-              <%= product.price.to_f / 10 %>
+              <%= product.price.to_f / 100 %>
             </td>
             <td>
               <%= form_with url:cart_path(product), method: :patch do |form| %>
@@ -44,6 +44,44 @@
         <% end %>
       </tbody>
     <table>
+    <%= form_with url: checkout_create_path, remote: true do |form| %>
+      <div>
+        <%= form.label :first_name, 'First Name' %>
+        <%= form.text_field :first_name, required: true %>
+      </div>
+
+      <div>
+        <%= form.label :last_name, 'Last Name' %>
+        <%= form.text_field :last_name, required: true %>
+      </div>
+
+      <div>
+        <%= form.label :email, 'Email Address' %>
+        <%= form.email_field :email, required: true %>
+      </div>
+
+      <div>
+        <%= form.label :address, 'Address' %>
+        <%= form.text_area :address, required: true %>
+      </div>
+
+      <div>
+        <%= form.label :city, 'City' %>
+        <%= form.text_field :city, required: true %>
+      </div>
+
+      <div>
+        <%= form.label :province, 'Province' %>
+        <%= form.text_field :province, required: true %>
+      </div>
+
+      <div>
+        <%= form.label :postal_code, 'Postal Code' %>
+        <%= form.text_field :postal_code, required: true %>
+      </div>
+
+      <%= form.button 'Buy Now 💳', type: 'submit' %>
+    <% end %>
   <% else %>
     <p>Your shopping cart is empty.</p>
   <% end %>
