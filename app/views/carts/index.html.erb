@@ -45,7 +45,7 @@
       </tbody>
     <table>
     <%= form_with url: checkout_create_path, remote: true do |form| %>
-      <div>
+      <!--<div>
         <%= form.label :first_name, 'First Name' %>
         <%= form.text_field :first_name, required: true %>
       </div>
@@ -78,7 +78,7 @@
       <div>
         <%= form.label :postal_code, 'Postal Code' %>
         <%= form.text_field :postal_code, required: true %>
-      </div>
+      </div>-->
 
       <%= form.button 'Buy Now 💳', type: 'submit' %>
     <% end %>
