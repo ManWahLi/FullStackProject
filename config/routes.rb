@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'checkout/create'
+  get 'checkout/success'
+  get 'checkout/cancel'
   get 'charges/new'
   get 'charges/create'
   get "carts/index"
