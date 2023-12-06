@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'charges/new'
+  get 'charges/create'
   get "carts/index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
