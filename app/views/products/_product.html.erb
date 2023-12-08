@@ -59,9 +59,17 @@
         <%= form_with url:carts_path, method: :post do |form| %>
           <!--pass product id and selected quantity to shopping cart-->
           <%= hidden_field_tag(:id, product.id)%>
-          <%= form.label(:quantity, 'Quantity:') %>
-          <%= form.number_field(:quantity, value: 1, min: 1) %>
-          <%= button_tag '✚ Add to Cart' %>
+
+          <div class="form-group row">
+            <%= form.label(:quantity, "Quantity:", class: 'col-sm-3 font-weight-bold col-form-label') %>
+            <div class="col-sm-3">
+              <%= form.number_field(:quantity, value: 1, min: 1, class: "form-control") %>
+            </div>
+
+            <div class="col-sm-6">
+              <%= button_tag '✚ Add to Cart', class: "btn btn-outline-secondary" %>
+            </div>
+          </div>
         <% end %>
       </p>
 

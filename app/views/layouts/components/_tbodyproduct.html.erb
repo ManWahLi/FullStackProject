@@ -14,4 +14,12 @@
   <td>
     <%= product.price.to_f / 100 %>
   </td>
+  <td>
+    <%= form_with url:carts_path, method: :post do %>
+      <!--pass id and quantity (default as 1) to shopping cart-->
+      <%= hidden_field_tag(:id, product.id) %>
+      <%= hidden_field_tag(:quantity, 1) %>
+      <%= button_tag '✚ Add to Cart', class: "btn btn-outline-secondary" %>
+    <% end %>
+  </td>
 </tr>

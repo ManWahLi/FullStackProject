@@ -17,13 +17,20 @@
               <%= product.price.to_f / 100 %>
             </p>
             <p class="card-text"><%= product.description.truncate(100, separator: ' ', omission: ' ...') %></p>
-            <%= link_to "View Product", product, class: "card-link" %>
-            <%= form_with url:carts_path, method: :post do %>
-              <!--pass id and quantity (default as 1) to shopping cart-->
-              <%= hidden_field_tag(:id, product.id) %>
-              <%= hidden_field_tag(:quantity, 1) %>
-              <%= button_tag '✚ Add to Cart' %>
-            <% end %>
+
+            <div class="row">
+              <div class="col-md-6">
+                <%= link_to "View Product", product, class: "btn btn-outline-primary" %>
+              </div>
+              <div class="col-md-6">
+                <%= form_with url:carts_path, method: :post do %>
+                  <!--pass id and quantity (default as 1) to shopping cart-->
+                  <%= hidden_field_tag(:id, product.id) %>
+                  <%= hidden_field_tag(:quantity, 1) %>
+                  <%= button_tag '✚ Add to Cart', class: "btn btn-outline-secondary" %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -6,36 +6,37 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Image</th>
-          <th style="width: 55%">Product Name</th>
-          <th>CA$</th>
-          <th style="width: 10%">Quantity</th>
+          <th class="col-3">Image</th>
+          <th class="col-8">Product Name</th>
+          <th class="col-3">CA$</th>
+          <th class="col-2">Quantity</th>
+          <th></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <% cart.each do |product| %>
           <tr>
-            <td>
+            <td class="col-3">
               <%= link_to(image_tag(product.image_link, alt: product.name, width: "60"), product) %>
             </td>
-            <td>
+            <td class="col-8">
               <%= link_to product.name, product %>
             </td>
-            <td>
+            <td class="col-3">
               <%= product.price.to_f / 100 %>
             </td>
-            <td>
+            <td class="col-2">
               <%= form_with url:cart_path(product), method: :patch do |form| %>
-              <div style="display: flex; align-items: center;">
+              <div class="d-flex align-items-center">
                 <!--pass product id and selected quantity to shopping cart-->
-                <%= form.number_field(:quantity, value: session[:shopping_cart][product.id.to_s], min: 1, style: "width: 60px;") %>
-                <%= form.submit 'Update' %>
+                <%= form.number_field(:quantity, value: session[:shopping_cart][product.id.to_s], min: 1, class: "form-control", style: "width: 80px;") %>
+                <%= form.submit 'Update', class: "btn btn-outline-secondary ml-4" %>
               </div>
               <% end %>
             </td>
             <td>
-              <%= button_to "Remove", cart_path(product), method: :delete %>
+              <%= button_to "Remove", cart_path(product), method: :delete, class: "btn btn-outline-secondary" %>
             </td>
           </tr>
         <% end %>
@@ -74,14 +75,16 @@
       </div>
     -->
 
-      <div>
-        <%= form.label :province, 'Province' %>
-        <%= select_tag 'province', options_for_select(@provinces.map { |province| [province.name, province.id] }) %>
+      <div class="form-group row">
+        <%= form.label :province, 'Province:', class: "col-sm-1 col-form-label font-weight-bold mt-2" %>
+        <div class="col-sm-1">
+          <%= select_tag 'province', options_for_select(@provinces.map { |province| [province.name, province.id] }), class: "form-select mt-2 border-light-2", style: "width: 400px;" %>
+        </div>
       </div>
 
-      <%= form.button 'Buy Now 💳', type: 'submit' %>
+      <%= form.button 'Buy Now 💳', type: 'submit', class: "btn btn-outline-info" %>
     <% end %>
   <% else %>
-    <p>Your shopping cart is empty.</p>
+    <p class="h4">Your shopping cart is empty.</p>
   <% end %>
 </div>

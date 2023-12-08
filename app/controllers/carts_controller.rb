@@ -14,7 +14,8 @@ class CartsController < ApplicationController
     session[:shopping_cart][id] ||= 0
     session[:shopping_cart][id] += quantity
 
-    redirect_to root_path
+    redirect_path = request.referer || root_path
+    redirect_to redirect_path
   end
 
   def update
