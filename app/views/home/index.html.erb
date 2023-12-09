@@ -1,4 +1,11 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+<% if customer_signed_in? %>
+ <div> Welcome <%= current_customer.email %> </div>
+  <%= button_to "Sign out", destroy_customer_session_path, method: :delete %>
+<% else %>
+  <%= button_to "Sign in", new_customer_session_path %>
+<% end %>
+
 <div class="container mt-3">
   <h1 class="text-center">Welcome to RRC Cosme! 💄</h1>
   <h2 class="text-center">🛍 Check out the Best Sellers of the week! 🛒</h2>
