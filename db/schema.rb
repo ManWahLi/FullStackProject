@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_06_213723) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_09_052331) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -84,11 +84,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_213723) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "username"
-    t.string "password"
     t.string "first_name"
     t.string "last_name"
-    t.string "email_address"
     t.string "address"
     t.string "city"
     t.string "postal_code"

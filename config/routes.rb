@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get "contacts/index"
+  get "abouts/index"
   root to: "home#index"
-  resources :abouts
   resources :tags
   resources :colors
   resources :products do
