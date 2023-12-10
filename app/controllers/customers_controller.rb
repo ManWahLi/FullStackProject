@@ -7,7 +7,13 @@ class CustomersController < ApplicationController
     @customer = Customer.find(current_customer.id)
     @customer.update(
       first_name: params[:first_name],
-      last_name:  params[:last_name]
+      last_name:  params[:last_name],
+      email:  params[:email],
+      address:  params[:address],
+      city:  params[:city],
+      postal_code:  params[:postal_code],
+      last_name:  params[:last_name],
+      province_id:  params[:province_id]
     )
     @customer.save
     redirect_to customers_index_path

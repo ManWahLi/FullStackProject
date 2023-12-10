@@ -1,15 +1,99 @@
-<h1>Customers#index</h1>
-<p>Find me in app/views/customers/index.html.erb</p>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-2 bg-white">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-4 pt-2 text-white">
 
-<%= form_with url: customers_update_path, method: :put, remote: true do |form| %>
-  <div>
-    <%= form.label :first_name, 'First Name' %>
-    <%= form.text_field :first_name, value: current_customer.first_name, required: true %>
-  </div>
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+          <li class="nav-item">
+            <%= link_to '#', class: 'nav-link align-middle px-0', title: "Profile" do %>
+              <i class="fs-4 bi bi-person"></i>
+                <span class="ms-1 d-none d-sm-inline">Profile</span>
+            <% end %>
+          </li>
 
-    <div>
-    <%= form.label :last_name, 'Last Name' %>
-    <%= form.text_field :last_name, value: current_customer.last_name, required: true %>
+          <li>
+            <%= link_to '#submenu1', class: 'nav-link px-0 align-middle', title: "Orders", 'data-bs-toggle' => 'collapse' do %>
+              <i class="fs-4 bi bi-card-list"></i>
+                <span class="ms-1 d-none d-sm-inline">Orders</span>
+            <% end %>
+
+            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+              <li class="w-100">
+                <%= link_to '#', class: 'nav-link px-0', title: "Pending" do %>
+                  <i class="fs-6 bi bi-clock-history"></i>
+                  <span class="ms-1 d-none d-sm-inline">Pending</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: 'nav-link px-0', title: "Paid" do %>
+                  <i class="fs-6 bi bi-credit-card"></i>
+                  <span class="ms-1 d-none d-sm-inline">Paid</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: 'nav-link px-0', title: "Delivered" do %>
+                  <i class="fs-6 bi bi-truck"></i>
+                  <span class="ms-1 d-none d-sm-inline">Delivered</span>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container mt-3">
+      <h2 class="mb-4"><%= "#{current_customer.first_name} #{current_customer.last_name}'s Profile" %></h2>
+      <div class="align-items-center justify-content-center">
+        <%= form_with url: customers_update_path, method: :put, remote: true do |form| %>
+          <!-- First Name input -->
+          <div class="form-outline mb-4">
+            <%= form.label :first_name, 'First Name' %>
+            <%= form.text_field :first_name, value: current_customer.first_name, required: true, class: "form-control", style: "width: 470px;" %>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <%= form.label :last_name, 'Last Name' %>
+            <%= form.text_field :last_name, value: current_customer.last_name, required: true, class: "form-control", style: "width: 470px;" %>
+          </div>
+
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <%= form.label :email %>
+            <%= form.text_field :email, value: current_customer.email, required: true, class: "form-control", style: "width: 470px;" %>
+          </div>
+
+          <!-- Address input -->
+          <div class="form-outline mb-4">
+            <%= form.label :address %>
+            <%= form.text_field :address, value: current_customer.address, required: true, class: "form-control", style: "width: 470px;" %>
+          </div>
+
+          <!-- City input -->
+          <div class="form-outline mb-4">
+            <%= form.label :city %>
+            <%= form.text_field :city, value: current_customer.city, required: true, class: "form-control", style: "width: 470px;" %>
+          </div>
+
+          <!-- Postal Code input -->
+          <div class="form-outline mb-4">
+            <%= form.label :postal_code, 'Postal Code' %>
+            <%= form.text_field :postal_code, value: current_customer.postal_code, required: true, class: "form-control", style: "width: 470px;" %>
+          </div>
+
+          <!-- Province input -->
+          <div class="form-outline mb-4">
+            <%= form.label :province_id, 'Province' %>
+            <%= form.collection_select :province_id, Province.all, :id, :name, { include_blank: 'Select Province' }, { class: 'form-control', style: 'width: 470px;' } %>
+          </div>
+
+          <!-- Submit button -->
+          <div class="actions">
+            <%= form.button 'Update', type: 'submit', class: "btn btn-primary btn-block mb-4", style: "width: 470px;" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-    <%= form.button 'Update', type: 'submit', class: "btn btn-outline-info" %>
-<% end %>
+</div>
