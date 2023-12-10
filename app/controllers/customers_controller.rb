@@ -1,10 +1,16 @@
 class CustomersController < ApplicationController
   before_action :load_provinces
 
-  def index
-  end
+  def index; end
 
   def update
+    @customer = Customer.find(current_customer.id)
+    @customer.update(
+      first_name: params[:first_name],
+      last_name:  params[:last_name]
+    )
+    @customer.save
+    redirect_to customers_index_path
   end
 
   private

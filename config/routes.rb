@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'customers/index'
-  get 'customers/update'
+  get "customers/index"
+  put "customers/update"
   devise_for :customers
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
