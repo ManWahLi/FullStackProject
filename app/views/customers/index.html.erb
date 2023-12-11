@@ -12,12 +12,12 @@
           </li>
 
           <li>
-            <%= link_to '#submenu1', class: 'nav-link px-0 align-middle', title: "Orders", 'data-bs-toggle' => 'collapse', 'data-bs-target' => '#submenu1' do %>
+            <%= link_to '#submenu1', class: 'nav-link px-0 align-middle', title: "Orders", 'data-toggle' => 'collapse', 'data-target' => '#submenu1' do %>
               <i class="fs-4 bi bi-card-list"></i>
                 <span class="ms-1 d-none d-sm-inline">Orders</span>
             <% end %>
 
-            <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+            <ul class="collapse nav flex-column ms-1" id="submenu1" data-parent="#menu">
               <li class="w-100">
                 <%= link_to '#', class: 'nav-link px-0', title: "Pending" do %>
                   <i class="fs-6 bi bi-clock-history"></i>
@@ -43,7 +43,10 @@
     </div>
 
     <div class="container mt-3">
-      <h2 class="mb-4"><%= "#{current_customer.first_name} #{current_customer.last_name}'s Profile" %></h2>
+      <% if flash[:customer] %>
+        <h6 class="p-3 mb-2 bg-info text-white"><%= flash[:customer] %></h6>
+      <% end %>
+      <h2 class="mb-4">Profile</h2>
       <div class="align-items-center justify-content-center">
         <%= form_with url: customers_update_path, method: :put, remote: true do |form| %>
           <!-- First Name input -->

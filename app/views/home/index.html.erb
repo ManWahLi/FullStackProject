@@ -1,9 +1,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 <% if customer_signed_in? %>
- <div> Welcome <%= current_customer.email %> </div>
-  <%= button_to "Sign out", destroy_customer_session_path, method: :delete %>
-<% else %>
-  <%= button_to "Sign in", new_customer_session_path %>
+ <div> Welcome <%= current_customer.first_name %> </div>
 <% end %>
 
 <div class="container mt-3">

@@ -3,6 +3,12 @@ class CheckoutController < ApplicationController
   # a product id will be in the params hash params[:product_id]
   def create
     # redirect to home page if the shopping cart is empty
+    if current_customer.province_id.nil?
+      flash[:cart] = "Missing province information. Please update it in your profile."
+      redirect_to carts_path
+      return
+    end
+
     if session[:shopping_cart].keys.length == 0
       redirect_to root_path
       return

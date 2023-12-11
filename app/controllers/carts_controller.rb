@@ -25,7 +25,7 @@ class CartsController < ApplicationController
 
     session[:shopping_cart][id] = quantity
     product_name = Product.find(id).name
-    flash[:notice] = "Quantity of #{product_name} is updated to #{quantity}."
+    flash[:cart] = "Quantity of #{product_name} is updated to #{quantity}."
     redirect_to carts_path
   end
 
@@ -35,7 +35,7 @@ class CartsController < ApplicationController
     id = params[:id]
     session[:shopping_cart].delete(params[:id])
     product_name = Product.find(id).name
-    flash[:notice] = "Removed #{product_name} from cart."
+    flash[:cart] = "Removed #{product_name} from cart."
     redirect_to carts_path
   end
 

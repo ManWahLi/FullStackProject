@@ -1,6 +1,6 @@
 <div class="container mt-5">
-  <% if flash[:notice] %>
-    <h6 class="p-3 mb-2 bg-info text-white"><%= flash[:notice] %></h6>
+  <% if flash[:cart] %>
+    <h6 class="p-3 mb-2 bg-info text-white"><%= flash[:cart] %></h6>
   <% end %>
   <% if cart.present? %>
     <table class="table table-hover">

@@ -1,7 +1,11 @@
 class CustomersController < ApplicationController
   before_action :load_provinces
 
-  def index; end
+  def index
+    return if customer_signed_in?
+
+    redirect_to root_path
+  end
 
   def update
     @customer = Customer.find(current_customer.id)
@@ -15,6 +19,7 @@ class CustomersController < ApplicationController
       province_id: params[:province_id]
     )
     @customer.save
+    flash[:customer] = "Your profile is updated."
     redirect_to customers_index_path
   end
 
