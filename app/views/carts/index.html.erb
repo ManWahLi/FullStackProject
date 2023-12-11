@@ -43,12 +43,6 @@
       </tbody>
     <table>
     <%= form_with url: checkout_create_path, remote: true do |form| %>
-      <div class="form-group row">
-        <%= form.label :province, 'Province:', class: "col-sm-1 col-form-label font-weight-bold mt-2" %>
-        <div class="col-sm-1">
-          <%= select_tag 'province', options_for_select(@provinces.map { |province| [province.name, province.id] }), class: "form-select mt-2 border-light-2", style: "width: 400px;" %>
-        </div>
-      </div>
       <%= form.button 'Checkout 💳', type: 'submit', class: "btn btn-outline-info" %>
     <% end %>
   <% else %>

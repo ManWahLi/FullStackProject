@@ -29,7 +29,7 @@ class CheckoutController < ApplicationController
       product_data_array << product_details
     end
 
-    province = Province.find(params[:province])
+    province = Province.find(current_customer.province_id)
     taxes = {
       "GST" => province.gst,
       "HST" => province.hst,

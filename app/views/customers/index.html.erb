@@ -12,12 +12,12 @@
           </li>
 
           <li>
-            <%= link_to '#submenu1', class: 'nav-link px-0 align-middle', title: "Orders", 'data-bs-toggle' => 'collapse' do %>
+            <%= link_to '#submenu1', class: 'nav-link px-0 align-middle', title: "Orders", 'data-bs-toggle' => 'collapse', 'data-bs-target' => '#submenu1' do %>
               <i class="fs-4 bi bi-card-list"></i>
                 <span class="ms-1 d-none d-sm-inline">Orders</span>
             <% end %>
 
-            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+            <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
               <li class="w-100">
                 <%= link_to '#', class: 'nav-link px-0', title: "Pending" do %>
                   <i class="fs-6 bi bi-clock-history"></i>
@@ -85,7 +85,7 @@
           <!-- Province input -->
           <div class="form-outline mb-4">
             <%= form.label :province_id, 'Province' %>
-            <%= form.collection_select :province_id, Province.all, :id, :name, { include_blank: 'Select Province' }, { class: 'form-control', style: 'width: 470px;' } %>
+            <%= form.collection_select :province_id, Province.all, :id, :name, { include_blank: 'Select Province', selected: current_customer.province_id }, { class: 'form-control', style: 'width: 470px;' } %>
           </div>
 
           <!-- Submit button -->
