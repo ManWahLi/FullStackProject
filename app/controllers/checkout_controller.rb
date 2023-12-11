@@ -2,14 +2,19 @@ class CheckoutController < ApplicationController
   # POST /checkout/create
   # a product id will be in the params hash params[:product_id]
   def create
-    # redirect to home page if the shopping cart is empty
+    unless customer_signed_in?
+      redirect_to new_customer_session_path
+      return
+    end
+
     if current_customer.province_id.nil?
-      flash[:cart] = "Missing province information. Please update it in your profile."
+      flash[:cart] = "Please update your profile before checkout."
       redirect_to carts_path
       return
     end
 
-    if session[:shopping_cart].keys.length == 0
+    # redirect to home page if the shopping cart is empty
+    if session[:shopping_cart].empty?
       redirect_to root_path
       return
     end
@@ -18,7 +23,7 @@ class CheckoutController < ApplicationController
     product_data_array = []
     total_price = 0
 
-    session[:shopping_cart].keys.each do |id|
+    session[:shopping_cart].each_key do |id|
       product = Product.find(id)
       product_details = {
         price_data: {
@@ -44,7 +49,7 @@ class CheckoutController < ApplicationController
     }
 
     taxes.each do |tax, value|
-      next unless value > 0
+      next unless value.positive?
 
       tax_detail = {
         price_data: {
@@ -58,19 +63,6 @@ class CheckoutController < ApplicationController
       }
       product_data_array << tax_detail
     end
-
-    # Handle taxes based on province input by user
-    # {
-    #   price_data: {
-    #     currency:     "cad",
-    #     product_data: {
-    #       name:        "GST",
-    #       description: "Goods and Services Tax"
-    #     },
-    #     unit_amount:  (product.price_cents * 0.05).to_i
-    #   },
-    #   quantity:   1
-    # }
 
     # Establish a connection with Stripe and then redirect the user to the payment screen.
 

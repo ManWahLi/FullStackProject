@@ -16,7 +16,7 @@
 
       <% if customer_signed_in? %>
         <div class="fs-5 ml-2 mr-2">
-          Welcome <%= current_customer.first_name %>!
+          <%= "Welcome#{' ' + current_customer.first_name.to_s unless current_customer.first_name.nil?}!" %>
         </div>
           <!-- Dropdown -->
           <ul class="navbar-nav">

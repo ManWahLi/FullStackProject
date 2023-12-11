@@ -3,6 +3,12 @@ require "net/http"
 require "json"
 
 # Delete all data
+
+OrderProduct.delete_all
+Order.delete_all
+OrderStatus.delete_all
+Customer.delete_all
+Province.delete_all
 ActiveStorage::VariantRecord.delete_all
 ActiveStorage::Attachment.delete_all
 ActiveStorage::Blob.delete_all
@@ -15,7 +21,6 @@ Brand.delete_all
 ProductType.delete_all
 Color.delete_all
 Tag.delete_all
-Province.delete_all
 
 # Reseed id of each table
 ActiveRecord::Base.connection.execute(
@@ -24,8 +29,17 @@ ActiveRecord::Base.connection.execute(
     'categories', 'products', 'product_colors',
     'product_tags', 'admin_users', 'active_storage_attachments',
     'active_storage_blobs', 'active_storage_variant_records',
-    'provinces');"
+    'order_products', 'orders', 'order_statuses', 'customers', 'provinces');"
 )
+
+# Create data to Order Status table
+status = ["pending", "paid", "delivered"]
+
+status.each do |s|
+  OrderStatus.create(name: s)
+end
+
+puts "Created #{OrderStatus.count} order statuses."
 
 # Import data from a csv file to Province table
 filename = Rails.root.join("db/tax_rate.csv")
