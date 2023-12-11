@@ -1,48 +1,43 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar1">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <!-- Language Dropdown List-->
-        <a class="nav-link dropdown-toggle fs-5 mr-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Language
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">English</a>
-          <a class="dropdown-item" href="#">Traditional Chinese</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-        <!-- End of Language Dropdown List-->
-      <li class="nav-item <%= 'active' if current_page?(contacts_index_path) %>">
-        <%= link_to 'Contact', contacts_index_path, class: 'nav-link fs-5 mr-3' %>
-      </li>
-    </ul>
-
-    <div class="container">
+  <div class="mt-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar1">
       <div class="col text-center">
         <%= link_to 'RRC Cosme', root_path, class: 'nav-link mb-0 font-weight-bold display-4', style: 'font-family: arail, sans-serif;' %>
       </div>
-    </div>
 
-    <%= form_with(url:search_products_path, method: :get, local: true, class: "form-inline my-2 my-lg-0") do %>
-      <%= text_field_tag(:keywords, nil, class: "form-control mr-sm-2 border-light-1", placeholder: 'Search for Products',
-                          style: "width: 200px;") %>
-      <%= collection_select(:dropdown, :selected_category, Category.order(:name),
-                            :id, :name, {include_blank: "All categories"}, class: "form-select mr-sm-2 border-light-2",
-                            style: "width: 200px;") %>
-      <%= submit_tag("Search", class: "btn btn-outline-primary mr-2 my-2 my-sm-0") %>
-    <% end %>
-      <% if customer_signed_in? %>
-        <%= link_to customers_index_path do%>
-          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person custom-margin-class" viewBox="0 0 16 16">
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-          </svg>
-        <% end %>
-        <%= button_to "Logout", destroy_customer_session_path, method: :delete, class: "btn btn-link text-decoration-none custom-margin-class" %>
-      <% else %>
-        <%= link_to "Login", new_customer_session_path, class: "text-decoration-none ml-2 mr-2" %>
+      <%= form_with(url:search_products_path, method: :get, local: true, class: "form-inline my-2 my-lg-0") do %>
+        <%= text_field_tag(:keywords, nil, class: "form-control mr-sm-2 border-light-1", placeholder: 'Search for Products',
+                            style: "width: 180px;") %>
+        <%= collection_select(:dropdown, :selected_category, Category.order(:name),
+                              :id, :name, {include_blank: "All categories"}, class: "form-select ml-2 mr-sm-2 border-light-2",
+                              style: "width: 180px;") %>
+        <%= submit_tag("Search", class: "btn btn-outline-primary mr-2 my-2") %>
       <% end %>
-      <%= link_to carts_path, class: "text-decoration-none ml-2" do %>
+
+      <% if customer_signed_in? %>
+        <div class="fs-5 ml-2 mr-2">
+          Welcome <%= current_customer.first_name %>!
+        </div>
+          <!-- Dropdown -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person custom-margin-class" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+              </svg>
+              </a>
+              <div class="dropdown-menu">
+                <%= link_to "Profile", customers_index_path, class: "btn btn-link text-decoration-none fs-5 custom-margin-class" %>
+                <%= button_to "Logout", destroy_customer_session_path, method: :delete, class: "btn btn-link text-decoration-none fs-5 custom-margin-class" %>
+              </div>
+            </li>
+          </ul>
+          <!-- End of Dropdown -->
+          <% else %>
+        <%= link_to "Login", new_customer_session_path, class: "text-decoration-none fs-5 ml-2 mr-2" %>
+      <% end %>
+
+      <%= link_to carts_path, class: "text-decoration-none ml-2", title: "Shopping Cart" do %>
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bag-heart custom-margin-class" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
         </svg>
@@ -50,42 +45,47 @@
           <span class="badge badge-pill badge-primary"><%= cart.size %></span>
         <% end %>
       <% end %>
-  </nav>
+    </nav>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar2">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar2">
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item <%= 'active' if current_page?(root_path) %>">
-            <%= link_to 'Home', root_path, class: 'nav-link fs-5 mr-3' %>
-          </li>
-          <li class="nav-item <%= 'active' if current_page?(brands_path) %>">
-            <%= link_to 'Brand', brands_path, class: 'nav-link fs-5 mr-3' %>
-          </li>
-          <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
-            <%= link_to 'Category', categories_path, class: 'nav-link fs-5 mr-3' %>
-          </li>
-          <li class="nav-item <%= 'active' if current_page?(product_types_path) %>">
-            <%= link_to 'Product Type', product_types_path, class: 'nav-link fs-5 mr-3' %>
-          </li>
-          <li class="nav-item <%= 'active' if current_page?(products_path) %>">
-            <%= link_to 'Product', products_path, class: 'nav-link fs-5 mr-3' %>
-          </li>
-          <li class="nav-item <%= 'active' if current_page?(colors_path) %>">
-            <%= link_to 'Color', colors_path, class: 'nav-link fs-5 mr-3' %>
-          </li>
-          <li class="nav-item <%= 'active' if current_page?(tags_path) %>">
-            <%= link_to 'Tag', tags_path, class: 'nav-link fs-5 mr-3' %>
-          </li>
-          <li class="nav-item <%= 'active' if current_page?(abouts_index_path) %>">
-            <%= link_to 'About', abouts_index_path, class: 'nav-link fs-5 mr-3' %>
-          </li>
-        </ul>
-      </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item <%= 'active' if current_page?(root_path) %>">
+              <%= link_to 'Home', root_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+            <li class="nav-item <%= 'active' if current_page?(brands_path) %>">
+              <%= link_to 'Brand', brands_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+            <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
+              <%= link_to 'Category', categories_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+            <li class="nav-item <%= 'active' if current_page?(product_types_path) %>">
+              <%= link_to 'Product Type', product_types_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+            <li class="nav-item <%= 'active' if current_page?(products_path) %>">
+              <%= link_to 'Product', products_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+            <li class="nav-item <%= 'active' if current_page?(colors_path) %>">
+              <%= link_to 'Color', colors_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+            <li class="nav-item <%= 'active' if current_page?(tags_path) %>">
+              <%= link_to 'Tag', tags_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+            <li class="nav-item <%= 'active' if current_page?(abouts_index_path) %>">
+              <%= link_to 'About', abouts_index_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+            <li class="nav-item <%= 'active' if current_page?(contacts_index_path) %>">
+              <%= link_to 'Contact', contacts_index_path, class: 'nav-link fs-5 mr-3' %>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
-  </nav>
+  </div>
 </header>

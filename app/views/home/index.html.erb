@@ -1,7 +1,4 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
-<% if customer_signed_in? %>
- <div> Welcome <%= current_customer.first_name %> </div>
-<% end %>
 
 <div class="container mt-3">
   <h1 class="text-center">Welcome to RRC Cosme! 💄</h1>
@@ -9,7 +6,7 @@
   <div class="row row-cols-3 g-4 mt-3">
     <% @products.each do |product| %>
       <div class="col">
-        <div class="card border-0" style="width: 20rem; height: 40rem;">
+        <div class="card border-0" style="width: 20rem; height: 45rem;">
           <%= link_to product do %>
             <img src="<%= product.image_link %>" class="card-img-top" alt="card">
           <% end %>
@@ -24,7 +21,7 @@
 
             <div class="row">
               <div class="col-md-6">
-                <%= link_to "View Product", product, class: "btn btn-outline-primary" %>
+                <%= link_to "View Product", product, class: "btn btn-outline-primary mb-1", style: "width: 127px;" %>
               </div>
               <div class="col-md-6">
                 <%= form_with url:carts_path, method: :post do %>
