@@ -4,7 +4,7 @@ require "json"
 
 # Delete all data
 
-OrderProduct.delete_all
+OrderDetail.delete_all
 Order.delete_all
 OrderStatus.delete_all
 Customer.delete_all
@@ -29,7 +29,7 @@ ActiveRecord::Base.connection.execute(
     'categories', 'products', 'product_colors',
     'product_tags', 'admin_users', 'active_storage_attachments',
     'active_storage_blobs', 'active_storage_variant_records',
-    'order_products', 'orders', 'order_statuses', 'customers', 'provinces');"
+    'order_details', 'orders', 'order_statuses', 'customers', 'provinces');"
 )
 
 # Create data to Order Status table

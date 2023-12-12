@@ -1,5 +1,16 @@
-<h1>
-  Yay! we have you money 💰
-  <%= debug @session %>
-  <%= debug @payment_intent %>
-</h1>
+
+<table class="table table-hover table-bordered table-sm">
+  <thead>
+    <th>Item name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </thead>
+  <% @order_summary.each do |d| %>
+  <tbody>
+    <td><%= d.item_name %></td>
+    <td><%= d.order_quantity %></td>
+    <td>CA$<%= d.order_price / 100 %></td>
+  </tbody>
+  <% end %>
+</table>
+<p>Grand Total: CA$<%= @order_summary.sum { |d| d.order_price / 100 } %></p>

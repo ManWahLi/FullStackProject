@@ -18,8 +18,8 @@ class CustomersController < ApplicationController
       postal_code: params[:postal_code],
       province_id: params[:province_id]
     )
-    @customer.save
-    flash[:customer] = "Your profile is updated."
+    flash[:customer] = "Your profile is updated." if @customer.save
+
     redirect_to customers_index_path
   end
 
