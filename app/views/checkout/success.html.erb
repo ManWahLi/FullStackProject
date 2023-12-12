@@ -5,14 +5,16 @@
   <thead>
     <th>Item name</th>
     <th>Quantity</th>
-    <th>Price</th>
+    <th>Price (CA$)</th>
   </thead>
   <% @order_summary.each do |d| %>
   <tbody>
     <td><%= d.item_name %></td>
     <td><%= d.order_quantity %></td>
-    <td>CA$<%= d.order_price / 100 %></td>
+    <td><%= d.order_price / 100 %></td>
   </tbody>
   <% end %>
 </table>
 <p>Grand Total: CA$<%= @order_summary.sum { |d| d.order_price / 100 } %></p>
+
+<p><%= link_to "View Orders", orders_index_path, class: "btn btn-outline-primary" %></p>
