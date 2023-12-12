@@ -11,10 +11,10 @@
   <tbody>
     <td><%= d.item_name %></td>
     <td><%= d.order_quantity %></td>
-    <td><%= d.order_price / 100 %></td>
+    <td>$ <%= format('%.2f', d.order_price.to_f / 100)%></td>
   </tbody>
   <% end %>
 </table>
-<p>Grand Total: CA$<%= @order_summary.sum { |d| d.order_price / 100 } %></p>
+<p><strong>Grand Total: CA$ <%= '%.2f' % (@order_summary.sum { |d| d.order_price.to_f * d.order_quantity} / 100) %></strong></p>
 
 <p><%= link_to "View Orders", orders_index_path, class: "btn btn-outline-primary" %></p>

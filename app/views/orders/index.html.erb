@@ -50,7 +50,7 @@
               <td><%= order.id %></td>
               <td><%= order.order_status.name.capitalize %></td>
               <td><%= order.created_at.strftime('%d-%b-%Y') %></td>
-              <td>$ <%= '%.2f' % (@order_details.sum { |d| d.order_price.to_f } / 100) %></td>
+              <td>$ <%= '%.2f' % (@order_details.sum { |d| d.order_price.to_f * d.order_quantity} / 100) %></td>
             </tr>
             <tr>
               <td colspan="6" class="hiddenRow">
