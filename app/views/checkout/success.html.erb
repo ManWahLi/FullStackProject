@@ -1,4 +1,6 @@
-
+<% order_detail = @order_summary.first %>
+<p><strong>Order ID: </strong><%= order_detail.order_id %></p>
+<p><strong>Order Status: </strong><%= order_detail.order.order_status.name %></p>
 <table class="table table-hover table-bordered table-sm">
   <thead>
     <th>Item name</th>

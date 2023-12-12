@@ -32,6 +32,7 @@ class CheckoutController < ApplicationController
   end
 
   def success
+    session[:shopping_cart].clear
     # Retrieve the session ID from the query parameters
     session_id = params[:session_id]
 
