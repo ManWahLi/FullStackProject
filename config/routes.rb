@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'orders/index'
   get "customers/index"
   put "customers/update"
   devise_for :customers
