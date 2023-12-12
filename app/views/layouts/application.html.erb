@@ -32,31 +32,31 @@
     <!-- End of Dropdox List Bootstrap CSS -->
   </head>
   <body>
-  <div class="container-fluid">
-    <!-- Header Row -->
-    <div class="row">
-      <div class="col">
-        <%= render partial: 'layouts/components/header' %>
-        <%= render partial: 'layouts/components/breadcrumb' %>
+    <div class="container-fluid">
+      <!-- Header Row -->
+      <div class="row">
+        <div class="col">
+          <%= render partial: 'layouts/components/header' %>
+          <%= render partial: 'layouts/components/breadcrumb' %>
+        </div>
       </div>
-    </div>
 
-    <!-- Body Row -->
-    <!--<div class="row">
-      <div class="col">
-        <p class="notice">Notice: <%= notice %></p>
-        <p class="alert">Alert: <%= alert %></p>
-        <%#= yield %>
-      </div>
-    </div>-->
-    <%= yield %>
+      <!-- Body Row -->
+      <!--<div class="row">
+        <div class="col">
+          <p class="notice">Notice: <%= notice %></p>
+          <p class="alert">Alert: <%= alert %></p>
+          <%#= yield %>
+        </div>
+      </div>-->
+      <%= yield %>
 
-    <!-- Footer Row -->
-    <div class="row">
-      <div class="col">
-        <%= render partial: 'layouts/components/footer' %>
+      <!-- Footer Row -->
+      <div class="row">
+        <div class="col">
+          <%= render partial: 'layouts/components/footer' %>
+        </div>
       </div>
     </div>
   </body>
-  </div>
 </html>
