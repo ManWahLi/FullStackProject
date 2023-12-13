@@ -12,7 +12,6 @@ class CustomersController < ApplicationController
     @customer.update(
       first_name:  params[:first_name],
       last_name:   params[:last_name],
-      email:       params[:email],
       address:     params[:address],
       city:        params[:city],
       postal_code: params[:postal_code],
