@@ -42,14 +42,16 @@
       </div>
 
       <!-- Body Row -->
-      <!--<div class="row">
+      <div class="row">
         <div class="col">
-          <p class="notice">Notice: <%= notice %></p>
-          <p class="alert">Alert: <%= alert %></p>
-          <%#= yield %>
+
+          <div class="mt-3 mb-4 text-center text-danger">
+            <%= alert %>
+          </div>
+
+          <%= yield %>
         </div>
-      </div>-->
-      <%= yield %>
+      </div>
 
       <!-- Footer Row -->
       <div class="row">

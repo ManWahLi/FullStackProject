@@ -21,7 +21,7 @@
       <div class="form-check mb-4">
         <% if devise_mapping.rememberable? %>
           <div class="field ml-1">
-            <%= f.check_box :remember_me, checked: true, class: "form-check-input", id: "flexCheckChecked" %>
+            <%= f.check_box :remember_me, checked: false, class: "form-check-input", id: "flexCheckChecked" %>
             <%= f.label :remember_me, class: "form-check-label", for: "flexCheckChecked" %>
           </div>
         <% end %>

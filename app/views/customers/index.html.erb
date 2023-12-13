@@ -10,6 +10,9 @@
       <% end %>
       <h2 class="mb-4">Profile</h2>
       <div class="align-items-center justify-content-center">
+        <p class="mb-4">
+          <strong>User Login: <%= current_customer.email %></strong>
+        </p>
         <%= form_with url: customers_update_path, method: :put, remote: true do |form| %>
           <!-- First Name input -->
           <div class="form-outline mb-4">
@@ -21,12 +24,6 @@
           <div class="form-outline mb-4">
             <%= form.label :last_name, 'Last Name' %>
             <%= form.text_field :last_name, value: current_customer.last_name, required: true, class: "form-control", style: "width: 470px;" %>
-          </div>
-
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <%= form.label :email %>
-            <%= form.text_field :email, value: current_customer.email, required: true, class: "form-control", style: "width: 470px;" %>
           </div>
 
           <!-- Address input -->
